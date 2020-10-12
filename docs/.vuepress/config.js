@@ -10,11 +10,12 @@ module.exports = {
     'vuepress-plugin-auto-sidebar'
   ],
   themeConfig: {
+    repo: 'vkbcel/notes',
     lastUpdated: '上次更新',
     smoothScroll: true,
     nav: [
       { text: '首页', link: '/' },
-      { text: '笔记', link: '/notes/' },
+      { text: '笔记', link: '/notes/' }
     ]
   }
 }
