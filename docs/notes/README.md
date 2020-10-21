@@ -1,6 +1,5 @@
 ---
-title: 首页
+title: 说明
 ---
 
-![An image](/gopher.jpg)
-
+内容非原创 转载整理自互联网 侵权不删

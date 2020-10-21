@@ -11,6 +11,7 @@ module.exports = {
   ],
   themeConfig: {
     repo: 'vkbcel/notes',
+    repoLabel: '123',
     lastUpdated: '上次更新',
     smoothScroll: true,
     nav: [

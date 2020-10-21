@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>MySQL Innodb Cluster(一) | 笔记</title>
+    <meta name="generator" content="VuePress 1.6.0">
+    <link rel="icon" href="/favicon.png">
+    <meta name="description" content="">
+    <link rel="preload" href="/assets/css/0.styles.e42f000a.css" as="style"><link rel="preload" href="/assets/js/app.d1a152a3.js" as="script"><link rel="preload" href="/assets/js/2.f7708dd7.js" as="script"><link rel="preload" href="/assets/js/3.b267ee7c.js" as="script"><link rel="preload" href="/assets/js/22.e634a684.js" as="script"><link rel="prefetch" href="/assets/js/10.40ac1ee1.js"><link rel="prefetch" href="/assets/js/11.1896b1e3.js"><link rel="prefetch" href="/assets/js/12.45310daf.js"><link rel="prefetch" href="/assets/js/13.d0a00a2b.js"><link rel="prefetch" href="/assets/js/14.a6a51c0b.js"><link rel="prefetch" href="/assets/js/15.e36d5806.js"><link rel="prefetch" href="/assets/js/16.4d10350d.js"><link rel="prefetch" href="/assets/js/17.cd3fe7fc.js"><link rel="prefetch" href="/assets/js/18.e1e782f4.js"><link rel="prefetch" href="/assets/js/19.0f6ecd93.js"><link rel="prefetch" href="/assets/js/20.2e4f22a7.js"><link rel="prefetch" href="/assets/js/21.e83f65a3.js"><link rel="prefetch" href="/assets/js/23.6b1f7a59.js"><link rel="prefetch" href="/assets/js/4.b6d7affc.js"><link rel="prefetch" href="/assets/js/5.81d8e1f6.js"><link rel="prefetch" href="/assets/js/6.e3cc33df.js"><link rel="prefetch" href="/assets/js/7.e976bcce.js"><link rel="prefetch" href="/assets/js/8.58cbdc5f.js"><link rel="prefetch" href="/assets/js/9.5db280a3.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.e42f000a.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">笔记</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/notes/" class="nav-link router-link-active">
+  笔记
+</a></div></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/notes/" class="nav-link router-link-active">
+  笔记
+</a></div></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>notes</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/notes/" aria-current="page" class="sidebar-link">说明</a></li><li><a href="/notes/mysql_01_lagou.html" class="sidebar-link">第01讲：MySQL体系结构与存储引擎</a></li><li><a href="/notes/mysql_02-1_lagou.html" class="sidebar-link">第02讲：深入理解事务与锁机制（上）</a></li><li><a href="/notes/mysql_02-2_lagou.html" class="sidebar-link">第02讲：深入理解事务与锁机制（下）</a></li><li><a href="/notes/mysql_03_lagou.html" class="sidebar-link">第03讲：高性能数据库表该如何设计</a></li><li><a href="/notes/mysql_04-1_lagou.html" class="sidebar-link">第04讲：高性能索引该如何设计（上）</a></li><li><a href="/notes/mysql_04-2_lagou.html" class="sidebar-link">第04讲：高性能索引该如何设计（下）</a></li><li><a href="/notes/mysql_05_lagou.html" class="sidebar-link">第05讲：如何提高查询性能</a></li><li><a href="/notes/mysql_06_lagou.html" class="sidebar-link">第06讲：如何突破单库性能瓶颈</a></li><li><a href="/notes/mysql_07_lagou.html" class="sidebar-link">第07讲：如何做到MySQL的高可用</a></li><li><a href="/notes/mysql_08_lagou.html" class="sidebar-link">第08讲：搭建稳固的MySQL运维体系</a></li><li><a href="/notes/mysql_09_lagou.html" class="sidebar-link">第09讲：如何做到MySQL高扩展性</a></li><li><a href="/notes/mysql_10_lagou.html" class="sidebar-link">第10讲：海量数据MySQL项目实战</a></li><li><a href="/notes/mysql_innodb_cluster_1.html" aria-current="page" class="active sidebar-link">MySQL Innodb Cluster(一)</a></li><li><a href="/notes/mysql_innodb_cluster_2.html" class="sidebar-link">MySQL Innodb Cluster(二)</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/notes/mysql_10_lagou.html" class="prev">
+        第10讲：海量数据MySQL项目实战
+      </a></span> <span class="next"><a href="/notes/mysql_innodb_cluster_2.html">
+        MySQL Innodb Cluster(二)
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.d1a152a3.js" defer></script><script src="/assets/js/2.f7708dd7.js" defer></script><script src="/assets/js/3.b267ee7c.js" defer></script><script src="/assets/js/22.e634a684.js" defer></script>
+  </body>
+</html>
