@@ -1,4 +1,4 @@
-这是一个 VuePress 搭建的文档
+这是一个 VuePress 搭建的笔记
 
 www.pashanhu.xyz
 
@@ -10,7 +10,7 @@ www.pashanhu.xyz
 # 安装yarn
 npm install -g yarn
 # 安装依赖
-yarn add
+yarn
 # 本地开发 启动项目
 yarn docs:dev
 ```
