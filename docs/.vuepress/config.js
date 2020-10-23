@@ -16,7 +16,7 @@ module.exports = {
     smoothScroll: true,
     nav: [
       { text: '首页', link: '/' },
-      { text: '笔记', link: '/notes/' }
+      { text: 'MySQL', link: '/mysql/' }
     ]
   }
 }
