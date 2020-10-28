@@ -3,7 +3,7 @@ title: 第01讲：MySQL体系结构与存储引擎
 ---
 ## MySQL 体系结构
 
-![体系结构](/mysql/01_体系结构.png)
+![](/mysql/01_体系结构.png)
 
 MySQL 体系结构由 Client Connectors 层、MySQL Server 层及存储引擎层组成。
 
@@ -35,7 +35,7 @@ MySQL Server 层主要包括 Connection Pool、Service & utilities、SQL interfa
 
 接下来我们用一条 SQL SELECT 语句的执行轨迹来说明客户端与 MySQL 的交互过程，如下图所示。
 
-![交互过程](/mysql/01_交互过程.png)
+![](/mysql/01_交互过程.png)
 
 ①通过客户端/服务器通信协议与 MySQL 建立连接。
 
@@ -51,13 +51,13 @@ MySQL Server 层主要包括 Connection Pool、Service & utilities、SQL interfa
 
 存储引擎是 MySQL 中具体与文件打交道的子系统，它是根据 MySQL AB 公司提供的文件访问层抽象接口定制的一种文件访问机制，这种机制就叫作存储引擎，下面是一些常用的存储引擎，有远古时期的 MyISAM、支持事务的 InnoDB、内存类型的 Memory、归档类型的 Archive、列式存储的 Infobright，以及一些新兴的存储引擎，以 RocksDB 为底层基础的 MyRocks 和 RocksDB，和以分形树索引组织存储的 TokuDB，当然现在还有极数云舟出品的分布式存储引擎 ArkDB，如下图所示。
 
-![存储引擎](/mysql/01_存储引擎.png)
+![](/mysql/01_存储引擎.png)
 
 在 MySQL 5.6 版本之前，默认的存储引擎都是 MyISAM，但 5.6 版本以后默认的存储引擎就是 InnoDB 了。
 
 InnoDB 存储引擎的具体架构如下图所示。上半部分是实例层（计算层），位于内存中，下半部分是物理层，位于文件系统中。
 
-![innodb存储引擎](/mysql/01_innodb存储引擎.png)
+![](/mysql/01_innodb存储引擎.png)
 
 ### 实例层
 
@@ -117,7 +117,7 @@ Redo 日志中包括多个 Redo 文件，这些文件循环使用，当达到一
 
 上面我们介绍了 MySQL InnoDB 存储引擎的具体架构，下面重点讲解内存和物理结构，如下图所示。
 
-![内存和物理结构](/mysql/01_内存和物理结构.png)
+![](/mysql/01_内存和物理结构.png)
 
 用户读取或者写入的最新数据都存储在 Buffer Pool 中，如果 Buffer Pool 中没有找到则会读取物理文件进行查找，之后存储到 Buffer Pool 中并返回给 MySQL Server。Buffer Pool 采用LRU 机制，具体的内存队列和刷新机制建议你课后学习了解下，这里不详细讲述。
 
@@ -157,7 +157,7 @@ MySQL 8.0 版本新特性如下：
 
 这里对比几个主流的存储引擎，如下图所示。从图中可以详细看到 InnoDB 和 MyISAM 的对比。
 
-![InnoDB_MyISAM](/mysql/01_InnoDB_MyISAM.png)
+![](/mysql/01_InnoDB_MyISAM.png)
 
 接下来重点在功能和性能上对比 InnoDB 和 MyISAM。
 
@@ -165,7 +165,7 @@ MySQL 8.0 版本新特性如下：
 
 InnoDB 和 MyISAM 的功能对比如下图所示。
 
-![InnoDB_MyISAM功能对比](/mysql/01_InnoDB_MyISAM功能对比.png)
+![](/mysql/01_InnoDB_MyISAM功能对比.png)
 
 * InnoDB 支持 ACID 的事务 4 个特性，而 MyISAM 不支持；
 
@@ -181,13 +181,13 @@ InnoDB 和 MyISAM 的功能对比如下图所示。
 
 InnoDB 表最大还可以支持 64TB，支持聚簇索引、支持压缩数据存储，支持数据加密，支持查询/索引/数据高速缓存，支持自适应hash索引、空间索引，支持热备份和恢复等，如下图所示。
 
-![InnoDB特性](/mysql/01_InnoDB特性.png)
+![](/mysql/01_InnoDB特性.png)
 
 ### 性能对比
 
 在性能对比上，InnoDB 也完胜 MyISAM，如下图所示。
 
-![性能对比](/mysql/01_性能对比.png)
+![](/mysql/01_性能对比.png)
 
 1. 读写混合模式下，随着 CPU 核数的增加，InnoDB 的读写能力呈线性增长，
 
@@ -203,7 +203,7 @@ InnoDB 表最大还可以支持 64TB，支持聚簇索引、支持压缩数据�
 
 InnoDB 存储引擎的核心特性包括：MVCC、锁、锁算法和分类、事务、表空间和数据页、内存线程以及状态查询。
 
-![核心要点](/mysql/01_核心要点.png)
+![](/mysql/01_核心要点.png)
 
 ### ARIES 三原则
 
@@ -216,4 +216,3 @@ ARIES 三原则，是指 Write Ahead Logging（WAL）。
 3. 利用 Undo 记录变更前的数据，即 Undo 记录事务数据变更前的值，用于回滚和其他事务多版本读。
 
 show engine innodb status\G 的结果里面有详细的 InnoDB 运行态信息，分段记录的，包括内存、线程、信号、锁、事务等，请你多多使用，出现问题时从中能分析出具体原因和解决方案。
-
