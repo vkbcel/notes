@@ -16,8 +16,16 @@ module.exports = {
     smoothScroll: true,
     nav: [
       { text: '首页', link: '/' },
-      { text: 'MySQL', link: '/mysql/' },
-      { text: '未分类', link: '/unclassified/' }
+      { text: '未分类', link: '/unclassified/' },
+      { text: 'GoLang', link: '/golang/' },
+      { text: 'MySQL',
+        ariaLabel: 'MySQL Menu',
+        items: [
+          { text: 'MySQL', link: '/mysql/' },
+          { text: '高性能MySQL实战', link: '/mysql/lagou/' },
+        ]
+      },
+      { text: 'Redis', link: '/redis/' }
     ]
   }
 }
