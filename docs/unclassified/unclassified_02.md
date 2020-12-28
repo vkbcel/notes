@@ -27,9 +27,9 @@ WSL发行版名字可以通过  `wsl -l` 查看
 
 1. 子系统存储在C盘，路径：
 
-    ```shell
-    C:\Users\用户名\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu20.04onWindows_79rhkp1fndgsc\LocalState
-    ```
+```shell
+C:\Users\用户名\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu20.04onWindows_79rhkp1fndgsc\LocalState
+```
 
 2. windows的磁盘被挂载在子系统/mnt下，可以直接访问
 
