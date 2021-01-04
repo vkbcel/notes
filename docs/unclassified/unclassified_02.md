@@ -4,7 +4,7 @@ title: linux常用命令
 
 #### 压缩传输相关
 
-```shell
+``` shell
 # tar
 # c 创建归档 归档同时压缩：z gzip类型压缩 j bzip2类型压缩 J xz类型压缩
 # x 解开归档 t 查看包中文件 v 压缩过程显示文件 f 指定压缩包名称
@@ -24,7 +24,7 @@ scp username@192.168.1.56:/path/filename  ./ # 下载远端filename到当前文�
 
 #### 搜索
 
-```shell
+``` shell
 # find
 find ./ -name '*.c' # 搜索当前目录下所有后缀为.c的文件
 find ./ -iname '*.c' # 忽略大小写搜索当前目录下所有后缀为.c的文件
@@ -35,7 +35,7 @@ locate -i ./r # 忽略大小写搜索当前目录下所有以 r 开头的文件
 
 #### 查找替换
 
-```shell
+``` shell
 # grep
 # -c 只输出匹配行的计数 -i 不区分大小写 -l 查询多文件时只输出包含匹配字符的文件名
 # -n 显示匹配行及行号 -s 不显示不存在或无匹配文本的错误信息 -v 显示不包含匹配文本的所有行
@@ -50,7 +50,7 @@ sed 'n1,n2s/one/two/g' filename # file文件中的全局替换one到two
 
 #### 网络相关
 
-```shell
+``` shell
 # netstat
 # -a 显示所有选项，默认不显示LISTEN相关 -t 仅显示tcp相关选项 -u 仅显示udp相关选项
 # -n 拒绝显示别名，能显示数字的全部转化成数字 -l 仅列出有在 Listen (监听) 的服務状态
@@ -64,7 +64,7 @@ route add default gw 192.168.1.1 # 修改网关
 
 #### 其他
 
-```shell
+``` shell
 # 显示当前目录磁盘占用
 du -h -d 1
 # 删除指定文件外的其他文件

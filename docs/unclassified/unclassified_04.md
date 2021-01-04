@@ -16,7 +16,7 @@ win10安装子系统并使用vscode进行远程开发
 
 2. 新建Ubuntu2004.vbs文件
 
-```shell
+``` shell
 Set ws = CreateObject("Wscript.Shell")
 ws.run "wsl -d Ubuntu-20.04 -u root /etc/init.wsl start", vbhide
 ```
@@ -27,7 +27,7 @@ WSL发行版名字可以通过  `wsl -l` 查看
 
 由于每次启动WSL的IP都会改变，设置代理可以通过以下设置，写入~/.bashrc使其永久生效
 
-```shell
+``` shell
 alias sp="export all_proxy=http://$(cat /etc/resolv.conf |grep "nameserver" |cut -f 2 -d " "):7890"
 alias up="unset all_proxy"
 ```
@@ -36,7 +36,7 @@ alias up="unset all_proxy"
 
 1. 子系统存储在C盘，路径：
 
-```shell
+``` shell
 C:\Users\用户名\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu20.04onWindows_79rhkp1fndgsc\LocalState
 ```
 

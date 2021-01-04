@@ -2,7 +2,7 @@
 title: golang实现http.server服务
 ---
 
-```golang
+``` go
 package main
 
 import (

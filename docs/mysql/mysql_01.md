@@ -4,20 +4,20 @@ title: MySQL 常用语句整理
 
 ### 用户相关
 
-```sql
+``` sql
 CREATE USER 'tc'@'%' IDENTIFIED BY 'password';
 GRANT ALL ON database_name.table_name TO 'tc'@'%';
 ```
 
 ### 库相关
 
-```sql
+``` sql
 CREATE DATABASE `database_name` DEFAULT CHARACTER SET utf8mb4;
 ```
 
 ### 表相关
 
-```sql
+``` sql
 CREATE TABLE `table_name` (
   `id`         int unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
   `created_at` datetime     DEFAULT NULL COMMENT '创建时间',
@@ -36,7 +36,7 @@ SHOW COLUMNS FROM `table_name`;
 
 ### 字段相关
 
-```sql
+``` sql
 ALTER TABLE `table_name` ADD  `address` varchar(255) NOT NULL DEFAULT '' COMMENT '地址';
 ALTER TABLE `table_name` MODIFY `address` varchar(65535) NOT NULL DEFAULT '' COMMENT '地址';
 ALTER TABLE `table_name` CHANGE `address` `address1` varchar(64) NOT NULL DEFAULT '' COMMENT '地址';
@@ -45,7 +45,7 @@ ALTER TABLE `table_name` DROP  `address`;
 
 ### 索引相关
 
-```sql
+``` sql
 ALTER TABLE `table_name` ADD INDEX `idx_orderno_userid` (`order_no`， `user_id`);
 ALTER TABLE `table_name` ADD UNIQUE INDEX `idx_orderno_userid` (`order_no`， `user_id`);
 ALTER TABLE `table_name` DROP INDEX `idx_orderno_userid`;
