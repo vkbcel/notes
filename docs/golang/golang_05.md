@@ -6,7 +6,9 @@ title: golang实现http.server服务
 package main
 
 import (
-    "fmt"; "log"; "net/http"
+    "fmt"
+    "log"
+    "net/http"
 )
 
 func main() {

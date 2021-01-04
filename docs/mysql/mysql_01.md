@@ -7,6 +7,9 @@ title: MySQL 常用语句整理
 ``` sql
 CREATE USER 'tc'@'%' IDENTIFIED BY 'password';
 GRANT ALL ON database_name.table_name TO 'tc'@'%';
+SELECT `host`, `user` FROM `mysql`.`user`;
+
+DROP USER 'tc'@'%';
 ```
 
 ### 库相关
@@ -37,16 +40,18 @@ SHOW COLUMNS FROM `table_name`;
 ### 字段相关
 
 ``` sql
-ALTER TABLE `table_name` ADD  `address` varchar(255) NOT NULL DEFAULT '' COMMENT '地址';
-ALTER TABLE `table_name` MODIFY `address` varchar(65535) NOT NULL DEFAULT '' COMMENT '地址';
+ALTER TABLE `table_name` ADD    `address` varchar(255) NOT NULL DEFAULT '' COMMENT '地址';
+ALTER TABLE `table_name` MODIFY `address` varchar(32) NOT NULL DEFAULT '' COMMENT '地址';
 ALTER TABLE `table_name` CHANGE `address` `address1` varchar(64) NOT NULL DEFAULT '' COMMENT '地址';
-ALTER TABLE `table_name` DROP  `address`;
+ALTER TABLE `table_name` DROP   `address`;
 ```
 
 ### 索引相关
 
 ``` sql
-ALTER TABLE `table_name` ADD INDEX `idx_orderno_userid` (`order_no`， `user_id`);
-ALTER TABLE `table_name` ADD UNIQUE INDEX `idx_orderno_userid` (`order_no`， `user_id`);
+ALTER TABLE `table_name` ADD INDEX `idx_orderno_userid` (`order_no`, `user_id`);
+ALTER TABLE `table_name` ADD UNIQUE INDEX `uidx_orderno_userid` (`order_no`, `user_id`);
 ALTER TABLE `table_name` DROP INDEX `idx_orderno_userid`;
+
+SHOW INDEX FROM `table_name`;
 ```
