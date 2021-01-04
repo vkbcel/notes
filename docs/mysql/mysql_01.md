@@ -27,7 +27,7 @@ CREATE TABLE `table_name` (
   `order_no`   varchar(128) NOT NULL DEFAULT '' COMMENT '订单号',
   PRIMARY KEY (`id`),
   UNIQUE KEY `uidx_order_no` (`order_no`)
-) ENGINE = InnoDB ROW_FORMAT = DYNAMIC COMMENT = '表备注';
+) ENGINE = InnoDB COMMENT = '表备注';
 
 INSERT INTO `table_name`(`user_id`, `order_no`) VALUES('123', '321');
 
