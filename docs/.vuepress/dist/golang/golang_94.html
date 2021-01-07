@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>排序算法举例 | 笔记</title>
+    <meta name="generator" content="VuePress 1.6.0">
+    <link rel="icon" href="/favicon.png">
+    <meta name="description" content="">
+    <link rel="preload" href="/assets/css/0.styles.850a1aa5.css" as="style"><link rel="preload" href="/assets/js/app.721fd3f7.js" as="script"><link rel="preload" href="/assets/js/2.33d6764a.js" as="script"><link rel="preload" href="/assets/js/3.d4b286c7.js" as="script"><link rel="preload" href="/assets/js/18.4e4f138b.js" as="script"><link rel="prefetch" href="/assets/js/10.7f6715ae.js"><link rel="prefetch" href="/assets/js/11.45968eec.js"><link rel="prefetch" href="/assets/js/12.c58a24a0.js"><link rel="prefetch" href="/assets/js/13.022a6636.js"><link rel="prefetch" href="/assets/js/14.9e70a2fa.js"><link rel="prefetch" href="/assets/js/15.a6ac3100.js"><link rel="prefetch" href="/assets/js/16.7320e88f.js"><link rel="prefetch" href="/assets/js/17.1be7210b.js"><link rel="prefetch" href="/assets/js/19.cccf044e.js"><link rel="prefetch" href="/assets/js/20.51294782.js"><link rel="prefetch" href="/assets/js/21.8e508086.js"><link rel="prefetch" href="/assets/js/22.8fc614ca.js"><link rel="prefetch" href="/assets/js/23.ab057b6c.js"><link rel="prefetch" href="/assets/js/24.349edd77.js"><link rel="prefetch" href="/assets/js/25.282c014f.js"><link rel="prefetch" href="/assets/js/26.e6ff4691.js"><link rel="prefetch" href="/assets/js/27.a0e94d97.js"><link rel="prefetch" href="/assets/js/28.12b4958e.js"><link rel="prefetch" href="/assets/js/29.0b6639f1.js"><link rel="prefetch" href="/assets/js/30.0fbf04d3.js"><link rel="prefetch" href="/assets/js/31.5cac6ce8.js"><link rel="prefetch" href="/assets/js/32.bee527b3.js"><link rel="prefetch" href="/assets/js/33.ee26c627.js"><link rel="prefetch" href="/assets/js/34.9671ae4d.js"><link rel="prefetch" href="/assets/js/35.ee17581f.js"><link rel="prefetch" href="/assets/js/36.63cadf44.js"><link rel="prefetch" href="/assets/js/37.6779fbd5.js"><link rel="prefetch" href="/assets/js/38.bfc435bf.js"><link rel="prefetch" href="/assets/js/39.1d512f9c.js"><link rel="prefetch" href="/assets/js/4.4e7114a2.js"><link rel="prefetch" href="/assets/js/40.f1d35c07.js"><link rel="prefetch" href="/assets/js/41.e6c24fbd.js"><link rel="prefetch" href="/assets/js/5.ed287efe.js"><link rel="prefetch" href="/assets/js/6.b91d4a05.js"><link rel="prefetch" href="/assets/js/7.b8dc2dff.js"><link rel="prefetch" href="/assets/js/8.e9116f7e.js"><link rel="prefetch" href="/assets/js/9.2c73c5a4.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.850a1aa5.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">笔记</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/unclassified/" class="nav-link">
+  未分类
+</a></div><div class="nav-item"><a href="/golang/" class="nav-link router-link-active">
+  GoLang
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="MySQL Menu" class="dropdown-title"><span class="title">MySQL</span> <span class="arrow down"></span></button> <button type="button" aria-label="MySQL Menu" class="mobile-dropdown-title"><span class="title">MySQL</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/mysql/" class="nav-link">
+  MySQL
+</a></li><li class="dropdown-item"><!----> <a href="/mysql/lagou/" class="nav-link">
+  高性能MySQL实战
+</a></li></ul></div></div><div class="nav-item"><a href="/redis/" class="nav-link">
+  Redis
+</a></div></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/unclassified/" class="nav-link">
+  未分类
+</a></div><div class="nav-item"><a href="/golang/" class="nav-link router-link-active">
+  GoLang
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="MySQL Menu" class="dropdown-title"><span class="title">MySQL</span> <span class="arrow down"></span></button> <button type="button" aria-label="MySQL Menu" class="mobile-dropdown-title"><span class="title">MySQL</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/mysql/" class="nav-link">
+  MySQL
+</a></li><li class="dropdown-item"><!----> <a href="/mysql/lagou/" class="nav-link">
+  高性能MySQL实战
+</a></li></ul></div></div><div class="nav-item"><a href="/redis/" class="nav-link">
+  Redis
+</a></div></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>golang</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/golang/" aria-current="page" class="sidebar-link">说明</a></li><li><a href="/golang/golang_01.html" class="sidebar-link">golang问题汇总</a></li><li><a href="/golang/golang_02.html" class="sidebar-link">golang代码片段[备忘]</a></li><li><a href="/golang/golang_11.html" class="sidebar-link">fmt.Printf格式[备忘]</a></li><li><a href="/golang/golang_12.html" class="sidebar-link">字符串处理[备忘]</a></li><li><a href="/golang/golang_13.html" class="sidebar-link">字符串处理[备忘]</a></li><li><a href="/golang/golang_91.html" class="sidebar-link">golang题目(一)</a></li><li><a href="/golang/golang_92.html" class="sidebar-link">golang题目(二)</a></li><li><a href="/golang/golang_93.html" class="sidebar-link">golang题目(三)</a></li><li><a href="/golang/golang_94.html" aria-current="page" class="active sidebar-link">排序算法举例</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/golang/golang_94.html#冒泡排序" class="sidebar-link">冒泡排序</a></li><li class="sidebar-sub-header"><a href="/golang/golang_94.html#快速排序" class="sidebar-link">快速排序</a></li><li class="sidebar-sub-header"><a href="/golang/golang_94.html#选择排序" class="sidebar-link">选择排序</a></li><li class="sidebar-sub-header"><a href="/golang/golang_94.html#插入排序" class="sidebar-link">插入排序</a></li><li class="sidebar-sub-header"><a href="/golang/golang_94.html#归并排序" class="sidebar-link">归并排序</a></li></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><p><img src="/golang/03_%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%97%B6%E7%A9%BA%E5%A4%8D%E6%9D%82%E5%BA%A6.jpeg" alt=""></p> <h2 id="冒泡排序"><a href="#冒泡排序" class="header-anchor">#</a> 冒泡排序</h2> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">func</span> <span class="token function">BubbleSort</span><span class="token punctuation">(</span>arr <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	end <span class="token operator">:=</span> <span class="token function">len</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span>
+	<span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> end <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+		<span class="token keyword">for</span> j <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> end <span class="token operator">-</span> i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> j<span class="token operator">++</span> <span class="token punctuation">{</span>
+			<span class="token keyword">if</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&gt;</span> arr<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token punctuation">{</span>
+				arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span> arr<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span>
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="快速排序"><a href="#快速排序" class="header-anchor">#</a> 快速排序</h2> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">func</span> <span class="token function">quicksort</span><span class="token punctuation">(</span>a <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span> <span class="token punctuation">{</span>
+	<span class="token keyword">if</span> <span class="token function">len</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">2</span> <span class="token punctuation">{</span>
+		<span class="token keyword">return</span> a
+	<span class="token punctuation">}</span>
+
+	left<span class="token punctuation">,</span> right <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token function">len</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span>
+
+	<span class="token keyword">for</span> i<span class="token punctuation">,</span> <span class="token boolean">_</span> <span class="token operator">:=</span> <span class="token keyword">range</span> a <span class="token punctuation">{</span>
+		<span class="token keyword">if</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;</span> a<span class="token punctuation">[</span>right<span class="token punctuation">]</span> <span class="token punctuation">{</span>
+			a<span class="token punctuation">[</span>left<span class="token punctuation">]</span><span class="token punctuation">,</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> a<span class="token punctuation">[</span>left<span class="token punctuation">]</span>
+			left<span class="token operator">++</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+
+	a<span class="token punctuation">[</span>left<span class="token punctuation">]</span><span class="token punctuation">,</span> a<span class="token punctuation">[</span>right<span class="token punctuation">]</span> <span class="token operator">=</span> a<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token punctuation">,</span> a<span class="token punctuation">[</span>left<span class="token punctuation">]</span>
+
+	<span class="token function">quicksort</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span><span class="token punctuation">:</span>left<span class="token punctuation">]</span><span class="token punctuation">)</span>
+	<span class="token function">quicksort</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>left<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+	<span class="token keyword">return</span> a
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="选择排序"><a href="#选择排序" class="header-anchor">#</a> 选择排序</h2> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">func</span> <span class="token function">SelectionSort</span><span class="token punctuation">(</span>arr <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> min <span class="token builtin">int</span> <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">var</span> tmp <span class="token builtin">int</span> <span class="token operator">=</span> <span class="token number">0</span>
+
+    <span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token function">len</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+        min <span class="token operator">=</span> i
+        <span class="token keyword">for</span> j <span class="token operator">:=</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> <span class="token function">len</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">;</span> j<span class="token operator">++</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&lt;</span> arr<span class="token punctuation">[</span>min<span class="token punctuation">]</span> <span class="token punctuation">{</span>
+                min <span class="token operator">=</span> j
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        tmp <span class="token operator">=</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+        arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>min<span class="token punctuation">]</span>
+        arr<span class="token punctuation">[</span>min<span class="token punctuation">]</span> <span class="token operator">=</span> tmp
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="插入排序"><a href="#插入排序" class="header-anchor">#</a> 插入排序</h2> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">func</span> <span class="token function">InsertionSort</span><span class="token punctuation">(</span>arr <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">var</span> i<span class="token punctuation">,</span> j <span class="token builtin">int</span>
+	<span class="token keyword">for</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token function">len</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+		<span class="token keyword">for</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> i<span class="token punctuation">;</span> j<span class="token operator">++</span> <span class="token punctuation">{</span>
+			<span class="token keyword">if</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&gt;</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token punctuation">{</span>
+				arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="归并排序"><a href="#归并排序" class="header-anchor">#</a> 归并排序</h2> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">func</span> <span class="token function">mergeSort</span><span class="token punctuation">(</span>arr <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span> <span class="token punctuation">{</span>
+   <span class="token keyword">if</span> <span class="token function">len</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">2</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> arr
+   <span class="token punctuation">}</span>
+   i <span class="token operator">:=</span> <span class="token function">len</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span>
+   left <span class="token operator">:=</span> <span class="token function">mergeSort</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span><span class="token punctuation">:</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
+   right <span class="token operator">:=</span> <span class="token function">mergeSort</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+   result <span class="token operator">:=</span> <span class="token function">merge</span><span class="token punctuation">(</span>left<span class="token punctuation">,</span> right<span class="token punctuation">)</span>
+   <span class="token keyword">return</span> result
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">merge</span><span class="token punctuation">(</span>left<span class="token punctuation">,</span> right <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span> <span class="token punctuation">{</span>
+   result <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+   m<span class="token punctuation">,</span> n <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span>
+   l<span class="token punctuation">,</span> r <span class="token operator">:=</span> <span class="token function">len</span><span class="token punctuation">(</span>left<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">len</span><span class="token punctuation">(</span>right<span class="token punctuation">)</span>
+   <span class="token keyword">for</span> m <span class="token operator">&lt;</span> l <span class="token operator">&amp;&amp;</span> n <span class="token operator">&lt;</span> r <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> left<span class="token punctuation">[</span>m<span class="token punctuation">]</span> <span class="token operator">&gt;</span> right<span class="token punctuation">[</span>n<span class="token punctuation">]</span> <span class="token punctuation">{</span>
+         result <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>result<span class="token punctuation">,</span> right<span class="token punctuation">[</span>n<span class="token punctuation">]</span><span class="token punctuation">)</span>
+         n<span class="token operator">++</span>
+         <span class="token keyword">continue</span>
+      <span class="token punctuation">}</span>
+      result <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>result<span class="token punctuation">,</span> left<span class="token punctuation">[</span>m<span class="token punctuation">]</span><span class="token punctuation">)</span>
+      m<span class="token operator">++</span>
+   <span class="token punctuation">}</span>
+   result <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>result<span class="token punctuation">,</span> right<span class="token punctuation">[</span>n<span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token operator">...</span><span class="token punctuation">)</span>
+   result <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>result<span class="token punctuation">,</span> left<span class="token punctuation">[</span>m<span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token operator">...</span><span class="token punctuation">)</span>
+   <span class="token keyword">return</span> result
+<span class="token punctuation">}</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/golang/golang_93.html" class="prev">
+        golang题目(三)
+      </a></span> <!----></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.721fd3f7.js" defer></script><script src="/assets/js/2.33d6764a.js" defer></script><script src="/assets/js/3.d4b286c7.js" defer></script><script src="/assets/js/18.4e4f138b.js" defer></script>
+  </body>
+</html>

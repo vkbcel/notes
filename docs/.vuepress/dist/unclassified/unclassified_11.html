@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>linux常用命令 | 笔记</title>
+    <meta name="generator" content="VuePress 1.6.0">
+    <link rel="icon" href="/favicon.png">
+    <meta name="description" content="">
+    <link rel="preload" href="/assets/css/0.styles.850a1aa5.css" as="style"><link rel="preload" href="/assets/js/app.721fd3f7.js" as="script"><link rel="preload" href="/assets/js/2.33d6764a.js" as="script"><link rel="preload" href="/assets/js/3.d4b286c7.js" as="script"><link rel="preload" href="/assets/js/37.6779fbd5.js" as="script"><link rel="prefetch" href="/assets/js/10.7f6715ae.js"><link rel="prefetch" href="/assets/js/11.45968eec.js"><link rel="prefetch" href="/assets/js/12.c58a24a0.js"><link rel="prefetch" href="/assets/js/13.022a6636.js"><link rel="prefetch" href="/assets/js/14.9e70a2fa.js"><link rel="prefetch" href="/assets/js/15.a6ac3100.js"><link rel="prefetch" href="/assets/js/16.7320e88f.js"><link rel="prefetch" href="/assets/js/17.1be7210b.js"><link rel="prefetch" href="/assets/js/18.4e4f138b.js"><link rel="prefetch" href="/assets/js/19.cccf044e.js"><link rel="prefetch" href="/assets/js/20.51294782.js"><link rel="prefetch" href="/assets/js/21.8e508086.js"><link rel="prefetch" href="/assets/js/22.8fc614ca.js"><link rel="prefetch" href="/assets/js/23.ab057b6c.js"><link rel="prefetch" href="/assets/js/24.349edd77.js"><link rel="prefetch" href="/assets/js/25.282c014f.js"><link rel="prefetch" href="/assets/js/26.e6ff4691.js"><link rel="prefetch" href="/assets/js/27.a0e94d97.js"><link rel="prefetch" href="/assets/js/28.12b4958e.js"><link rel="prefetch" href="/assets/js/29.0b6639f1.js"><link rel="prefetch" href="/assets/js/30.0fbf04d3.js"><link rel="prefetch" href="/assets/js/31.5cac6ce8.js"><link rel="prefetch" href="/assets/js/32.bee527b3.js"><link rel="prefetch" href="/assets/js/33.ee26c627.js"><link rel="prefetch" href="/assets/js/34.9671ae4d.js"><link rel="prefetch" href="/assets/js/35.ee17581f.js"><link rel="prefetch" href="/assets/js/36.63cadf44.js"><link rel="prefetch" href="/assets/js/38.bfc435bf.js"><link rel="prefetch" href="/assets/js/39.1d512f9c.js"><link rel="prefetch" href="/assets/js/4.4e7114a2.js"><link rel="prefetch" href="/assets/js/40.f1d35c07.js"><link rel="prefetch" href="/assets/js/41.e6c24fbd.js"><link rel="prefetch" href="/assets/js/5.ed287efe.js"><link rel="prefetch" href="/assets/js/6.b91d4a05.js"><link rel="prefetch" href="/assets/js/7.b8dc2dff.js"><link rel="prefetch" href="/assets/js/8.e9116f7e.js"><link rel="prefetch" href="/assets/js/9.2c73c5a4.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.850a1aa5.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">笔记</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/unclassified/" class="nav-link router-link-active">
+  未分类
+</a></div><div class="nav-item"><a href="/golang/" class="nav-link">
+  GoLang
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="MySQL Menu" class="dropdown-title"><span class="title">MySQL</span> <span class="arrow down"></span></button> <button type="button" aria-label="MySQL Menu" class="mobile-dropdown-title"><span class="title">MySQL</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/mysql/" class="nav-link">
+  MySQL
+</a></li><li class="dropdown-item"><!----> <a href="/mysql/lagou/" class="nav-link">
+  高性能MySQL实战
+</a></li></ul></div></div><div class="nav-item"><a href="/redis/" class="nav-link">
+  Redis
+</a></div></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/unclassified/" class="nav-link router-link-active">
+  未分类
+</a></div><div class="nav-item"><a href="/golang/" class="nav-link">
+  GoLang
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="MySQL Menu" class="dropdown-title"><span class="title">MySQL</span> <span class="arrow down"></span></button> <button type="button" aria-label="MySQL Menu" class="mobile-dropdown-title"><span class="title">MySQL</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/mysql/" class="nav-link">
+  MySQL
+</a></li><li class="dropdown-item"><!----> <a href="/mysql/lagou/" class="nav-link">
+  高性能MySQL实战
+</a></li></ul></div></div><div class="nav-item"><a href="/redis/" class="nav-link">
+  Redis
+</a></div></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>unclassified</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/unclassified/" aria-current="page" class="sidebar-link">说明</a></li><li><a href="/unclassified/unclassified_01.html" class="sidebar-link">资源</a></li><li><a href="/unclassified/unclassified_11.html" aria-current="page" class="active sidebar-link">linux常用命令</a></li><li><a href="/unclassified/unclassified_12.html" class="sidebar-link">linux使用问题汇总</a></li><li><a href="/unclassified/unclassified_13.html" class="sidebar-link">win10安装linux子系统(WSL)</a></li><li><a href="/unclassified/unclassified_21.html" class="sidebar-link">docker使用问题汇总</a></li><li><a href="/unclassified/unclassified_95.html" class="sidebar-link">互斥锁、自旋锁、读写锁、悲观锁、乐观锁</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h4 id="压缩传输相关"><a href="#压缩传输相关" class="header-anchor">#</a> 压缩传输相关</h4> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment"># tar</span>
+<span class="token comment"># c 创建归档 归档同时压缩：z gzip类型压缩 j bzip2类型压缩 J xz类型压缩</span>
+<span class="token comment"># x 解开归档 t 查看包中文件 v 压缩过程显示文件 f 指定压缩包名称</span>
+<span class="token comment"># -exclude filename 压缩过程中忽略filename文件</span>
+<span class="token function">tar</span> czf foobar.tar.gz ./dir <span class="token comment"># 压缩dir文件夹到foobar.tar.gz</span>
+<span class="token function">tar</span> xvf foobar.tar.gz <span class="token comment"># 解压foobar.tar.gz到当前目录</span>
+<span class="token comment"># zip</span>
+<span class="token function">zip</span> -r foobar.zip ./dir <span class="token comment"># 压缩dir文件夹到foobar.zip</span>
+<span class="token function">unzip</span> -d ./ foobar.zip <span class="token comment"># 解压foobar.zip到当前目录</span>
+<span class="token comment"># rar e 解压到当前目录 x 解压到指定目录</span>
+<span class="token function">rar</span> a foobar ./dir <span class="token comment"># 压缩dir文件夹到foobar.rar</span>
+<span class="token function">unrar</span> e foobar.rar <span class="token comment"># 解压foobar.rar到当前目录</span>
+<span class="token comment"># scp -r 递归</span>
+<span class="token function">scp</span> -r ./dir root@192.168.1.56:/dir <span class="token comment"># 上传</span>
+<span class="token function">scp</span> username@192.168.1.56:/path/filename  ./ <span class="token comment"># 下载远端filename到当前文件夹</span>
+</code></pre></div><h4 id="搜索"><a href="#搜索" class="header-anchor">#</a> 搜索</h4> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment"># find</span>
+<span class="token function">find</span> ./ -name <span class="token string">'*.c'</span> <span class="token comment"># 搜索当前目录下所有后缀为.c的文件</span>
+<span class="token function">find</span> ./ -iname <span class="token string">'*.c'</span> <span class="token comment"># 忽略大小写搜索当前目录下所有后缀为.c的文件</span>
+<span class="token comment"># locate updatedb 更新</span>
+<span class="token function">locate</span> /etc/sh <span class="token comment"># 搜索 etc 目录下所有以 sh 开头的文件</span>
+<span class="token function">locate</span> -i ./r <span class="token comment"># 忽略大小写搜索当前目录下所有以 r 开头的文件</span>
+</code></pre></div><h4 id="查找替换"><a href="#查找替换" class="header-anchor">#</a> 查找替换</h4> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment"># grep</span>
+<span class="token comment"># -c 只输出匹配行的计数 -i 不区分大小写 -l 查询多文件时只输出包含匹配字符的文件名</span>
+<span class="token comment"># -n 显示匹配行及行号 -s 不显示不存在或无匹配文本的错误信息 -v 显示不包含匹配文本的所有行</span>
+<span class="token comment"># -A 向下匹配 -B 向上匹配 -C 向上向下同时匹配</span>
+<span class="token function">grep</span> -A <span class="token number">2</span> <span class="token string">'test'</span> d* <span class="token comment">#搜索所有以d开头文件打印所有包含test的行再往下显示2行</span>
+<span class="token comment"># egrep</span>
+<span class="token function">egrep</span> <span class="token string">'pattern1.*pattern2|pattern2.*pattern1'</span> filename <span class="token comment"># and</span>
+<span class="token function">egrep</span> <span class="token string">'pattern1|pattern2'</span> filename <span class="token comment"># or</span>
+<span class="token comment"># sed</span>
+<span class="token function">sed</span> <span class="token string">'n1,n2s/one/two/g'</span> filename <span class="token comment"># file文件中的全局替换one到two</span>
+</code></pre></div><h4 id="网络相关"><a href="#网络相关" class="header-anchor">#</a> 网络相关</h4> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment"># netstat</span>
+<span class="token comment"># -a 显示所有选项，默认不显示LISTEN相关 -t 仅显示tcp相关选项 -u 仅显示udp相关选项</span>
+<span class="token comment"># -n 拒绝显示别名，能显示数字的全部转化成数字 -l 仅列出有在 Listen (监听) 的服務状态</span>
+<span class="token comment"># -p 显示建立相关链接的程序名 -r 显示路由信息，路由表 -e 显示扩展信息，例如uid等</span>
+<span class="token comment"># -s 按各个协议进行统计 -c 每隔一个固定时间，执行该netstat命令</span>
+<span class="token function">netstat</span> -ntlp
+<span class="token comment"># ifconfig</span>
+<span class="token function">ifconfig</span> eth0 <span class="token number">192.168</span>.1.2 netmask <span class="token number">255.255</span>.255.0 <span class="token comment"># 修改IP地址</span>
+route <span class="token function">add</span> default gw <span class="token number">192.168</span>.1.1 <span class="token comment"># 修改网关</span>
+</code></pre></div><h4 id="其他"><a href="#其他" class="header-anchor">#</a> 其他</h4> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment"># 显示当前目录磁盘占用</span>
+<span class="token function">du</span> -h -d <span class="token number">1</span>
+<span class="token comment"># 删除指定文件外的其他文件</span>
+<span class="token function">ls</span> <span class="token operator">|</span> <span class="token function">grep</span> -v keep <span class="token operator">|</span> <span class="token function">xargs</span> <span class="token function">rm</span> 
+<span class="token comment"># 十六进制查看文件 在vim中尾行模式</span>
+:%<span class="token operator">!</span>xxd <span class="token comment"># 查看</span>
+:%<span class="token operator">!</span>xxd -r <span class="token comment"># 取消查看</span>
+<span class="token comment"># 十六进制查看文件</span>
+hexdump -Cv filename
+<span class="token comment"># 查询公网IP</span>
+<span class="token function">curl</span> ifconfig.me
+<span class="token function">curl</span> cip.cc
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/unclassified/unclassified_01.html" class="prev">
+        资源
+      </a></span> <span class="next"><a href="/unclassified/unclassified_12.html">
+        linux使用问题汇总
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.721fd3f7.js" defer></script><script src="/assets/js/2.33d6764a.js" defer></script><script src="/assets/js/3.d4b286c7.js" defer></script><script src="/assets/js/37.6779fbd5.js" defer></script>
+  </body>
+</html>
