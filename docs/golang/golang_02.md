@@ -7,19 +7,34 @@ title: golang代码片段[备忘]
 package main
 
 import (
-    "fmt"
-    "log"
-    "net/http"
+	"flag"
+	"fmt"
+	"log"
+	"net/http"
+	"os"
+)
+
+var (
+	dir  = flag.String("d", ".", "dir")
+	host = flag.String("h", "127.0.0.1", "host")
+	port = flag.Int("p", 8000, "port")
 )
 
 func main() {
-    fmt.Println("Serving files in the current directory on port 8000")
-    http.Handle("/", http.FileServer(http.Dir(".")))
-    err := http.ListenAndServe(":8000", nil)
-    if err != nil {
-        log.Fatal("ListenAndServe: ", err)
-    }
+	flag.Parse()
+
+	if _, err := os.Stat(*dir); os.IsNotExist(err) {
+		log.Fatal("invalid dir err: ", err)
+	}
+
+	fmt.Printf("Serving files in the %s on %s:%d\n", *dir, *host, *port)
+	http.Handle("/", http.FileServer(http.Dir(*dir)))
+	err := http.ListenAndServe(fmt.Sprintf("%s:%d", *host, *port), nil)
+	if err != nil {
+		log.Fatal("ListenAndServe: ", err)
+	}
 }
+
 ```
 
 ``` go

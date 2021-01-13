@@ -1,125 +1,342 @@
 ---
-title: 字符串处理[备忘]
+title: 正则表达式[备忘]
 ---
 
-*转义字符*
+#### 基础
 
-* Value: []int64{0, 1}
+正则表达式 `a.b` 匹配任意满足以a开头b结尾中间包含单个字符的字符串，点匹配单子任意字符
 
-|  表达式 | 结果  | 注意 |
-|  ----  | ----  | ---- | 
-| "" |  | 字符串零值 |
-| "Japan 日本" | Japan 日本 | Unicode |
-| "\xe6\x97\xa5" | 日 | UTF-8编码 |
-| "\u65E5" | 日 | Unicode码位 |
-| "\\" | \ | 反斜杠 |
-| "\"" | " | 双引号 |
-| "\n" |  | 换行 |
-| "\t" |  | Tab |
-| `\xe6` | \xe6 | 原始字符串(不进行任何转义) |
-| html.EscapeString("<>") | &lt;&gt; | HTML转义(< > & ' ") |
-| url.PathEscape("A B") | A%20B | URL编码(Percent-encoding) `net/url` |
-
-*拼接*
-
-strings.Builder 用于高性能字符串拼接
-
-* 它提供了bytes.Buffer方法的子集，可将其安全地避免在将构建器转换为字符串时避免多余的复制
-* fmt由于构建器实现了io.Writer接口，因此可以使用该软件包进行格式化
-* Grow 当字符串的最大大小已知时，该方法可用于预分配内存
+要检查是否有子字符串匹配 `a.b` 使用 `regexp.MatchString` 函数
 
 ``` go
-var b strings.Builder
-b.Grow(32)
-for i, p := range []int{2, 3, 5, 7, 11, 13} {
-    fmt.Fprintf(&b, "%d:%d, ", i+1, p)
-}
-s := b.String()   // no copying
-s = s[:b.Len()-2] // no copying (removes trailing ", ")
-fmt.Println(s)
+matched, err := regexp.MatchString(`a.b`, "aaxbb")
+fmt.Println(matched) // true
+fmt.Println(err)     // nil (regexp is valid)
 ```
 
-*比较*
+要检查整个字符串是否匹配 `a.b` ，请锚定正则表达式的开头和结尾
 
-|  表达式 | 结果  | 注意 |
-|  ----  | ----  | ---- | 
-| "Japan" == "Japan" | true | 相等 |
-| strings.EqualFold("Japan", "JAPAN") | true | UTF-8忽略大小写比较 |
-| "Japan" < "japan" | true | 字母顺序比较 |
-
-*长度*
-
-|  表达式 | 结果  | 注意 |
-|  ----  | ----  | ---- | 
-| len("日") | 3 | 字节长度 |
-| utf8.RuneCountInString("日") | 1 | rune长度 `unicode/utf8` |
-| utf8.ValidString("日") | true | 是否有效的utf8字符串 `unicode/utf8` |
-
-*索引,子串,迭代*
+* 插入符 `^` 与文本或行的开头匹配
+* 美元符号 `$` 与文本的结尾匹配
 
 ``` go
-// UTF-8
-for i, ch := range "Japan 日本" {
-    fmt.Printf("%d:%q ", i, ch)
-}
-// Output: 0:'J' 1:'a' 2:'p' 3:'a' 4:'n' 5:' ' 6:'日' 9:'本'
-
-// byte
-s := "Japan 日本"
-for i := 0; i < len(s); i++ {
-    fmt.Printf("%q ", s[i])
-}
-// Output: 'J' 'a' 'p' 'a' 'n' ' ' 'æ' '\u0097' '¥' 'æ' '\u009c' '¬'
+matched, _ := regexp.MatchString(`^a.b$`, "aaxbb")
+fmt.Println(matched) // false
 ```
 
-*搜索*
+*编译*
 
-|  表达式 | 结果  | 注意 |
-|  ----  | ----  | ---- | 
-| strings.Contains("Japan", "abc") | false | 包含字符串abc? |
-| strings.ContainsAny("Japan", "abc") | true | 包含字节a或b或c? |
-| strings.Count("Banana", "ana") | 1 | ana的非重叠计数 |
-| strings.HasPrefix("Japan", "Ja") | true | 前缀是Ja? |
-| strings.HasSuffix("Japan", "pan") | true | 后缀是pan? |
-| strings.Index("Japan", "abc") | -1 | 子串第一次出现的位置|
-| strings.IndexAny("Japan", "abc") | 1 | a或b或c第一次出现的位置 |
-| strings.LastIndex("Japan", "abc") | -1 | 子串最后一次出现的位置 |
-| strings.LastIndexAny("Japan", "abc") | 3 | a或b或c最后一次出现的位置 |
+对于更复杂的查询，应该编译正则表达式来创建一个Regexp对象。有两种选择：
 
-*替换*
+``` go
+re1, err := regexp.Compile(`regexp`) // error if regexp invalid
+re2 := regexp.MustCompile(`regexp`)  // panic if regexp invalid
+```
 
-|  表达式 | 结果  | 注意 |
-|  ----  | ----  | ---- | 
-| strings.Replace("foo", "o", ".", 2) | f.. | 将前2个o替换为. -1代表替换全部 |
-| strings.Map(func(r rune) rune {return r+1}, "ab") | bc | 处理每个字节 |
-| strings.ToUpper("Japan") | JAPAN | 大写 |
-| strings.ToLower("Japan") | japan	 | 小写 |
-| strings.Title("ja pan") | Ja Pan | 单词首字母大写 |
-| strings.TrimSpace(" foo\n") | foo | 去除开头和结尾的空白 |
-| strings.Trim("foo", "fo") |  | 去除开头和结尾的f和o |
-| strings.TrimLeft("foo", "f") | oo | 仅开头 |
-| strings.TrimRight("foo", "o") | f | 仅结尾 |
-| strings.TrimPrefix("foo", "fo") | o |  |
-| strings.TrimSuffix("foo", "o") | fo |  |
+#### 备忘
 
-*切割*
+[RE2](https://github.com/google/re2/wiki/Syntax)
 
-|  表达式 | 结果  | 注意 |
-|  ----  | ----  | ---- | 
-| strings.Fields(" a\t b\n") | ["a" "b"] | 去掉空白符 |
-| strings.Split("a,b", ",") | ["a" "b"] | 去掉分隔符 |
-| strings.SplitAfter("a,b", ",") | ["a," "b"] | 保持分隔符 |
+*复合*
 
-*拼接*
+|  正则表达式 | 含义 |
+|  ----  | ---- |
+| xy | xy |
+| x|y | x或y,优先x |
+| xy|z | (xy)|z |
+| xy* | x(y*) |
 
-|  表达式 | 结果  | 注意 |
-|  ----  | ----  | ---- | 
-| strings.Join([]string{"a", "b"}, ":") | a:b | 拼接 |
-| strings.Repeat("da", 2) | dada | 重复 |
+*重复（贪婪和非贪婪）*
 
-*转换*
+|  正则表达式 | 含义 |
+|  ----  | ---- |
+| x* | 零个或多个x，贪婪 |
+| x*? | 零个或多个x，非贪婪 |
+| x+ | 一个或多个x，贪婪 |
+| x+? | 一个或多个x，非贪婪 |
+| x? | 零个或一个x，贪婪 |
+| x?? | 零个或一个x，非贪婪 |
+| x{n} | 严格匹配n个x |
+| x{n,m} | 匹配n到m个x，贪婪 |
+| x{n,m}? | 匹配n到m个x，贪婪 |
+| x{n,} | 匹配n个或多于n个x，非贪婪 |
+| x{n,}? | 匹配n个或多于n个x，非贪婪 |
 
-|  表达式 | 结果  | 注意 |
-|  ----  | ----  | ---- |
-| strconv.ParseInt("123", 10, 64) | 123 | 字符串转数字 |
-| strconv.FormatInt(255, 16) | "ff" | 十六进制 |
+*分组*
+
+|  正则表达式 | 含义 |
+|  ----  | ---- |
+| (子表达式) | 被捕获的组，该组被编号 (子匹配) |
+| (?P<命名>子表达式) | 被捕获的组，该组被编号且被命名 (子匹配) |
+| (?:子表达式) | 非捕获的组 (子匹配) |
+| (?标记) | 在组内设置标记，非捕获，标记影响当前组后的正则表达式 |
+| (?标记:子表达式) | 在组内设置标记，非捕获，标记影响当前组内的子表达式 |
+
+标记语法：
+* xyz  (设置 xyz 标记)
+* -xyz (清除 xyz 标记)
+* xy-z (设置 xy 标记, 清除 z 标记)
+  
+可以设置的标记有：
+
+|  正则表达式 | 含义 |
+|  ----  | ---- |
+| i | 不区分大小写 |
+| m | 让^和$匹配整个文本的开头和结尾，而非行首和行尾（多行模式） |
+| s | 让.匹配\n（单行模式） |
+| U | 非贪婪模式：交换x*和x*?等的含义 |
+
+默认都为false
+
+例如 前缀`"(?is)"`使匹配的字符不区分大小写，并让`.`匹配`\n`。（默认匹配区分大小写，`.`不匹配`\n`）
+
+*角色类*
+
+|  字符类 | 含义 |
+|  ----  | ---- |
+| . | 任意字符 |
+| [ab] | 字符a或b |
+| [^ab] | 除a或b以外的任何字符 |
+| [a-z] | a到z的任意字符 |
+| [a-z0-9] | a到z或0-9的任意字符 |
+
+|  Perl 类 | 含义 |
+|  ----  | ---- |
+| \d | 任意数字,等价[0-9] |
+| \D | 非数字 |
+| \s | 空白字符： [\t\n\f\r ] |
+| \S | 非空白字符： [^\t\n\f\r ] |
+| \w | 等价[0-9A-Za-z_] |
+| \W | 等价[^0-9A-Za-z_] |
+
+|  ASCII 类 | 含义 |
+|  ----  | ---- |
+|  [:alnum:]  | 字母数字 等价[0-9A-Za-z] |
+|  [:alpha:]  | 字母 等价[A-Za-z] |
+|  [:ascii:]  | ASCII字符集 等价[\x00-\x7F] |
+|  [:blank:]  | 空白占位符 等价[\t ] |
+|  [:cntrl:]  | 控制字符 等价[\x00-\x1F\x7F] |
+|  [:digit:]  | 数字 等价[0-9] |
+|  [:graph:]  | 图形字符 等价[!-~] |
+|  [:lower:]  | 小写字母 等价[a-z] |
+|  [:print:]  | 可打印字符 等价[ -~] |
+|  [:punct:]  | 标点符号 等价[!-/:-@[-`{-~] |
+|  [:space:]  | 空白字符 等价[\t\n\v\f\r ] |
+|  [:upper:]  | 大写字母 等价[A-Z] |
+|  [:word:]   | 单词字符 等价[0-9A-Za-z_] |
+|  [:xdigit:] | 十六进制字符集 等价[0-9A-Fa-f] |
+
+Unicode 类 共四种表达式
+
+* `\p{Greek}` 匹配Unicode
+* `\pN` 匹配Unicode
+* `\P{Greek}` 匹配Unicode（取反）等价[^\p{Greek}]
+* `\PN` 匹配Unicode（取反）
+
+|  Unicode 类 | 含义 |
+|  ----  | ---- |
+| \p{Han} | 匹配Unicode 汉字 |
+| \P{Han} | 匹配Unicode 汉字外其他字符 |
+
+*特殊角色*
+
+要从字面上匹配特殊字符 \^$.|?*+-[]{}()，请使用反斜杠将其转义。例如，\{匹配左括号符号。
+
+|  正则表达式 | 含义 |
+|  ----  | ---- |
+| \t | 水平制表符 \011 |
+| \n | 换行符 \012 |
+| \f | 换页 \014 |
+| \r | 回车 \015 |
+| \v | 垂直制表符 \013 |
+| \123 | 八进制字符代码（最多三位数） |
+| \x7F | 十六进制字符代码（恰好两位数） |
+
+*文字边界锚点*
+
+|  正则表达式 | 含义 |
+|  ----  | ---- |
+| ^ | 如果标记 m=true 则匹配行首，否则匹配整个文本的开头（m 默认为 false） |
+| $ | 如果标记 m=true 则匹配行尾，否则匹配整个文本的结尾（m 默认为 false） |
+| \A | 匹配整个文本的开头，忽略 m 标记 |
+| \z | 匹配整个文本的结尾，忽略 m 标记 |
+| \b | 匹配ASCII边界 |
+| \B | 匹配非ASCII边界 |
+
+#### 代码示例
+
+使用FindString方法查找第一个匹配项的文本。如果不匹配，则返回值为空字符串。
+
+``` go
+re := regexp.MustCompile(`foo.?`) // 非贪婪
+fmt.Printf("%q\n", re.FindString("seafood fool")) // "food"
+fmt.Printf("%q\n", re.FindString("meat"))         // ""
+```
+
+使用FindAllString方法查找所有匹配项的文本。返回值nil表示不匹配。
+
+``` go
+re := regexp.MustCompile(`a.`)
+fmt.Printf("%q\n", re.FindAllString("paranormal", -1)) // ["ar" "an" "al"]
+fmt.Printf("%q\n", re.FindAllString("paranormal", 2))  // ["ar" "an"]
+fmt.Printf("%q\n", re.FindAllString("graal", -1))      // ["aa"]
+fmt.Printf("%q\n", re.FindAllString("none", -1))       // [] (nil slice)
+```
+
+使用ReplaceAllString方法替换所有匹配项的文本。返回一个副本，替换正则表达式的所有匹配项。
+
+``` go
+re := regexp.MustCompile(`ab*`)
+fmt.Printf("%q\n", re.ReplaceAllString("-a-abb-", "T")) // "-T-T-"
+```
+
+使用Split方法将字符串切成由正则表达式分隔的子字符串。它返回这些表达式匹配之间的子字符串的一部分。返回值nil表示不匹配。
+
+``` go
+a := regexp.MustCompile(`a`)
+fmt.Printf("%q\n", a.Split("banana", -1)) // ["b" "n" "n" ""]
+fmt.Printf("%q\n", a.Split("banana", 0))  // [] (nil slice)
+fmt.Printf("%q\n", a.Split("banana", 1))  // ["banana"]
+fmt.Printf("%q\n", a.Split("banana", 2))  // ["b" "nana"]
+
+zp := regexp.MustCompile(`z+`)
+fmt.Printf("%q\n", zp.Split("pizza", -1)) // ["pi" "a"]
+fmt.Printf("%q\n", zp.Split("pizza", 0))  // [] (nil slice)
+fmt.Printf("%q\n", zp.Split("pizza", 1))  // ["pizza"]
+fmt.Printf("%q\n", zp.Split("pizza", 2))  // ["pi" "a"]
+```
+
+综合示例
+
+``` go
+func main() {
+	text := `Hello 世界！123 Go.`
+
+	// 查找连续的小写字母
+	reg := regexp.MustCompile(`[a-z]+`)
+	fmt.Printf("%q\n", reg.FindAllString(text, -1))
+	// ["ello" "o"]
+
+	// 查找连续的非小写字母
+	reg = regexp.MustCompile(`[^a-z]+`)
+	fmt.Printf("%q\n", reg.FindAllString(text, -1))
+	// ["H" " 世界！123 G" "."]
+
+	// 查找连续的单词字母
+	reg = regexp.MustCompile(`[\w]+`)
+	fmt.Printf("%q\n", reg.FindAllString(text, -1))
+	// ["Hello" "123" "Go"]
+
+	// 查找连续的非单词字母、非空白字符
+	reg = regexp.MustCompile(`[^\w\s]+`)
+	fmt.Printf("%q\n", reg.FindAllString(text, -1))
+	// ["世界！" "."]
+
+	// 查找连续的大写字母
+	reg = regexp.MustCompile(`[[:upper:]]+`)
+	fmt.Printf("%q\n", reg.FindAllString(text, -1))
+	// ["H" "G"]
+
+	// 查找连续的非 ASCII 字符
+	reg = regexp.MustCompile(`[[:^ascii:]]+`)
+	fmt.Printf("%q\n", reg.FindAllString(text, -1))
+	// ["世界！"]
+
+	// 查找连续的标点符号
+	reg = regexp.MustCompile(`[\pP]+`)
+	fmt.Printf("%q\n", reg.FindAllString(text, -1))
+	// ["！" "."]
+
+	// 查找连续的非标点符号字符
+	reg = regexp.MustCompile(`[\PP]+`)
+	fmt.Printf("%q\n", reg.FindAllString(text, -1))
+	// ["Hello 世界" "123 Go"]
+
+	// 查找连续的汉字
+	reg = regexp.MustCompile(`[\p{Han}]+`)
+	fmt.Printf("%q\n", reg.FindAllString(text, -1))
+	// ["世界"]
+
+	// 查找连续的非汉字字符
+	reg = regexp.MustCompile(`[\P{Han}]+`)
+	fmt.Printf("%q\n", reg.FindAllString(text, -1))
+	// ["Hello " "！123 Go."]
+
+	// 查找 Hello 或 Go
+	reg = regexp.MustCompile(`Hello|Go`)
+	fmt.Printf("%q\n", reg.FindAllString(text, -1))
+	// ["Hello" "Go"]
+
+	// 查找行首以 H 开头，以空格结尾的字符串
+	reg = regexp.MustCompile(`^H.*\s`)
+	fmt.Printf("%q\n", reg.FindAllString(text, -1))
+	// ["Hello 世界！123 "]
+
+	// 查找行首以 H 开头，以空白结尾的字符串（非贪婪模式）
+	reg = regexp.MustCompile(`(?U)^H.*\s`)
+	fmt.Printf("%q\n", reg.FindAllString(text, -1))
+	// ["Hello "]
+
+	// 查找以 hello 开头（忽略大小写），以 Go 结尾的字符串
+	reg = regexp.MustCompile(`(?i:^hello).*Go`)
+	fmt.Printf("%q\n", reg.FindAllString(text, -1))
+	// ["Hello 世界！123 Go"]
+
+	// 查找 Go.
+	reg = regexp.MustCompile(`\QGo.\E`)
+	fmt.Printf("%q\n", reg.FindAllString(text, -1))
+	// ["Go."]
+
+	// 查找从行首开始，以空格结尾的字符串（非贪婪模式）
+	reg = regexp.MustCompile(`(?U)^.* `)
+	fmt.Printf("%q\n", reg.FindAllString(text, -1))
+	// ["Hello "]
+
+	// 查找以空格开头，到行尾结束，中间不包含空格字符串
+	reg = regexp.MustCompile(` [^ ]*$`)
+	fmt.Printf("%q\n", reg.FindAllString(text, -1))
+	// [" Go."]
+
+	// 查找“单词边界”之间的字符串
+	reg = regexp.MustCompile(`(?U)\b.+\b`)
+	fmt.Printf("%q\n", reg.FindAllString(text, -1))
+	// ["Hello" " 世界！" "123" " " "Go"]
+
+	// 查找连续 1 次到 4 次的非空格字符，并以 o 结尾的字符串
+	reg = regexp.MustCompile(`[^ ]{1,4}o`)
+	fmt.Printf("%q\n", reg.FindAllString(text, -1))
+	// ["Hello" "Go"]
+
+	// 查找 Hello 或 Go
+	reg = regexp.MustCompile(`(?:Hell|G)o`)
+	fmt.Printf("%q\n", reg.FindAllString(text, -1))
+	// ["Hello" "Go"]
+
+	// 查找 Hello 或 Go，替换为 Hellooo、Gooo
+	reg = regexp.MustCompile(`(?PHell|G)o`)
+	fmt.Printf("%q\n", reg.ReplaceAllString(text, "${n}ooo"))
+	// "Hellooo 世界！123 Gooo."
+
+	// 交换 Hello 和 Go
+	reg = regexp.MustCompile(`(Hello)(.*)(Go)`)
+	fmt.Printf("%q\n", reg.ReplaceAllString(text, "$3$2$1"))
+	// "Go 世界！123 Hello."
+
+	// 特殊字符的查找
+	reg = regexp.MustCompile(`[\f\t\n\r\v\123\x7F\x{10FFFF}\\\^\$\.\*\+\?\{\}\(\)\[\]\|]`)
+	fmt.Printf("%q\n", reg.ReplaceAllString("\f\t\n\r\v\123\x7F\U0010FFFF\\^$.*+?{}()[]|", "-"))
+}
+```
+
+按照命名模式有16个功能
+
+``` shell
+    查找（全部）？（字符串）？（子匹配项）？（索引）？
+```
+
+例如：Find，FindAllString，FindStringIndex，...
+
+* 如果All存在，则函数匹配连续的非重叠匹配
+* String表示参数为字符串；否则，它是一个字节切片
+* 如果Submatch存在，则返回值是连续子匹配的切片。子匹配是正则表达式中带括号的子表达式的匹配。请参阅FindSubmatch示例
+* 如果Index存在，则匹配项和子匹配项由字节索引对标识

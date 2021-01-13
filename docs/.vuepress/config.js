@@ -17,7 +17,7 @@ module.exports = {
     nav: [
       { text: '首页', link: '/' },
       { text: '未分类', link: '/unclassified/' },
-      { text: 'GoLang', link: '/golang/' },
+      { text: 'Golang', link: '/golang/' },
       { text: 'MySQL',
         ariaLabel: 'MySQL Menu',
         items: [

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>redis问题汇总 | 笔记</title>
+    <meta name="generator" content="VuePress 1.6.0">
+    <link rel="icon" href="/favicon.png">
+    <meta name="description" content="">
+    <link rel="preload" href="/assets/css/0.styles.adb18c72.css" as="style"><link rel="preload" href="/assets/js/app.c2ed7daf.js" as="script"><link rel="preload" href="/assets/js/2.33d6764a.js" as="script"><link rel="preload" href="/assets/js/3.d4b286c7.js" as="script"><link rel="preload" href="/assets/js/36.33b59f7b.js" as="script"><link rel="prefetch" href="/assets/js/10.5ed70718.js"><link rel="prefetch" href="/assets/js/11.082c3164.js"><link rel="prefetch" href="/assets/js/12.065cf2d8.js"><link rel="prefetch" href="/assets/js/13.594621ae.js"><link rel="prefetch" href="/assets/js/14.bd944333.js"><link rel="prefetch" href="/assets/js/15.016bc4d3.js"><link rel="prefetch" href="/assets/js/16.e7ad9ffc.js"><link rel="prefetch" href="/assets/js/17.c4791e64.js"><link rel="prefetch" href="/assets/js/18.f0b24c6d.js"><link rel="prefetch" href="/assets/js/19.8082e818.js"><link rel="prefetch" href="/assets/js/20.c3e7c3b0.js"><link rel="prefetch" href="/assets/js/21.c8181bdd.js"><link rel="prefetch" href="/assets/js/22.9e587c4f.js"><link rel="prefetch" href="/assets/js/23.7d05c17c.js"><link rel="prefetch" href="/assets/js/24.9f9420c4.js"><link rel="prefetch" href="/assets/js/25.a85c7b00.js"><link rel="prefetch" href="/assets/js/26.249a0da7.js"><link rel="prefetch" href="/assets/js/27.2d7bf999.js"><link rel="prefetch" href="/assets/js/28.47a8606d.js"><link rel="prefetch" href="/assets/js/29.6111504a.js"><link rel="prefetch" href="/assets/js/30.d53dd494.js"><link rel="prefetch" href="/assets/js/31.18bfc969.js"><link rel="prefetch" href="/assets/js/32.6a37e6f9.js"><link rel="prefetch" href="/assets/js/33.d7f3e1ac.js"><link rel="prefetch" href="/assets/js/34.1cd8900a.js"><link rel="prefetch" href="/assets/js/35.59259841.js"><link rel="prefetch" href="/assets/js/37.597894c1.js"><link rel="prefetch" href="/assets/js/38.2eb068aa.js"><link rel="prefetch" href="/assets/js/39.f6e1aa0e.js"><link rel="prefetch" href="/assets/js/4.15c8cbaa.js"><link rel="prefetch" href="/assets/js/40.91dea65e.js"><link rel="prefetch" href="/assets/js/41.97d0c7dd.js"><link rel="prefetch" href="/assets/js/42.d219b4fe.js"><link rel="prefetch" href="/assets/js/43.2e13219e.js"><link rel="prefetch" href="/assets/js/44.d6238d23.js"><link rel="prefetch" href="/assets/js/45.ff5787fb.js"><link rel="prefetch" href="/assets/js/46.5c10a1b0.js"><link rel="prefetch" href="/assets/js/47.52e11db2.js"><link rel="prefetch" href="/assets/js/48.6cb49e75.js"><link rel="prefetch" href="/assets/js/49.087934d3.js"><link rel="prefetch" href="/assets/js/5.ed287efe.js"><link rel="prefetch" href="/assets/js/6.b91d4a05.js"><link rel="prefetch" href="/assets/js/7.b8dc2dff.js"><link rel="prefetch" href="/assets/js/8.e9116f7e.js"><link rel="prefetch" href="/assets/js/9.34f65178.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.adb18c72.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">笔记</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/unclassified/" class="nav-link">
+  未分类
+</a></div><div class="nav-item"><a href="/golang/" class="nav-link">
+  Golang
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="MySQL Menu" class="dropdown-title"><span class="title">MySQL</span> <span class="arrow down"></span></button> <button type="button" aria-label="MySQL Menu" class="mobile-dropdown-title"><span class="title">MySQL</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/mysql/" class="nav-link">
+  MySQL
+</a></li><li class="dropdown-item"><!----> <a href="/mysql/lagou/" class="nav-link">
+  高性能MySQL实战
+</a></li></ul></div></div><div class="nav-item"><a href="/redis/" class="nav-link router-link-active">
+  Redis
+</a></div></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/unclassified/" class="nav-link">
+  未分类
+</a></div><div class="nav-item"><a href="/golang/" class="nav-link">
+  Golang
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="MySQL Menu" class="dropdown-title"><span class="title">MySQL</span> <span class="arrow down"></span></button> <button type="button" aria-label="MySQL Menu" class="mobile-dropdown-title"><span class="title">MySQL</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/mysql/" class="nav-link">
+  MySQL
+</a></li><li class="dropdown-item"><!----> <a href="/mysql/lagou/" class="nav-link">
+  高性能MySQL实战
+</a></li></ul></div></div><div class="nav-item"><a href="/redis/" class="nav-link router-link-active">
+  Redis
+</a></div></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>redis</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/redis/" aria-current="page" class="sidebar-link">说明</a></li><li><a href="/redis/redis_01.html" aria-current="page" class="active sidebar-link">redis问题汇总</a></li><li><a href="/redis/redis_12.html" class="sidebar-link">Keys(键)</a></li><li><a href="/redis/redis_13.html" class="sidebar-link">String(字符串)</a></li><li><a href="/redis/redis_14.html" class="sidebar-link">Hash(哈希表)</a></li><li><a href="/redis/redis_15.html" class="sidebar-link">List(列表)</a></li><li><a href="/redis/redis_16.html" class="sidebar-link">Set(集合)</a></li><li><a href="/redis/redis_17.html" class="sidebar-link">SortedSet(有序集合)</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><p>文档链接</p> <p><a href="http://doc.redisfans.com/" target="_blank" rel="noopener noreferrer">redis命令参考<svg xmlns="http://www.w3.org/2000/svg" aria-labelledby="outbound-link-title" role="img" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><title id="outbound-link-title">(opens new window)</title> <path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <p><a href="https://redis.io/" target="_blank" rel="noopener noreferrer">redis英文官网<svg xmlns="http://www.w3.org/2000/svg" aria-labelledby="outbound-link-title" role="img" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><title id="outbound-link-title">(opens new window)</title> <path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <p><a href="http://www.redis.cn/" target="_blank" rel="noopener noreferrer">redis中文官网<svg xmlns="http://www.w3.org/2000/svg" aria-labelledby="outbound-link-title" role="img" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><title id="outbound-link-title">(opens new window)</title> <path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/redis/" class="prev router-link-active">
+        说明
+      </a></span> <span class="next"><a href="/redis/redis_12.html">
+        Keys(键)
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.c2ed7daf.js" defer></script><script src="/assets/js/2.33d6764a.js" defer></script><script src="/assets/js/3.d4b286c7.js" defer></script><script src="/assets/js/36.33b59f7b.js" defer></script>
+  </body>
+</html>

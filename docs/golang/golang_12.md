@@ -9,9 +9,9 @@ title: 字符串处理[备忘]
 |  表达式 | 结果  | 注意 |
 |  ----  | ----  | ---- | 
 | "" |  | 字符串零值 |
-| "Japan 日本" | Japan 日本 | Unicode |
-| "\xe6\x97\xa5" | 日 | UTF-8编码 |
-| "\u65E5" | 日 | Unicode码位 |
+| "China 中国" | China 中国 | Unicode |
+| "\xe4\xb8\xad" | 中 | UTF-8编码 |
+| "\u4e2d" | 中 | Unicode码位 |
 | "\\" | \ | 反斜杠 |
 | "\"" | " | 双引号 |
 | "\n" |  | 换行 |
@@ -43,48 +43,48 @@ fmt.Println(s)
 
 |  表达式 | 结果  | 注意 |
 |  ----  | ----  | ---- | 
-| "Japan" == "Japan" | true | 相等 |
-| strings.EqualFold("Japan", "JAPAN") | true | UTF-8忽略大小写比较 |
-| "Japan" < "japan" | true | 字母顺序比较 |
+| "China" == "China" | true | 相等 |
+| strings.EqualFold("China", "CHINA") | true | UTF-8忽略大小写比较 |
+| "China" < "china" | true | 字母顺序比较 |
 
 *长度*
 
 |  表达式 | 结果  | 注意 |
 |  ----  | ----  | ---- | 
-| len("日") | 3 | 字节长度 |
-| utf8.RuneCountInString("日") | 1 | rune长度 `unicode/utf8` |
-| utf8.ValidString("日") | true | 是否有效的utf8字符串 `unicode/utf8` |
+| len("中") | 3 | 字节长度 |
+| utf8.RuneCountInString("中") | 1 | rune长度 `unicode/utf8` |
+| utf8.ValidString("中") | true | 是否有效的utf8字符串 `unicode/utf8` |
 
 *索引,子串,迭代*
 
 ``` go
 // UTF-8
-for i, ch := range "Japan 日本" {
+for i, ch := range "China 中国" {
     fmt.Printf("%d:%q ", i, ch)
 }
-// Output: 0:'J' 1:'a' 2:'p' 3:'a' 4:'n' 5:' ' 6:'日' 9:'本'
+// Output: 0:'C' 1:'h' 2:'i' 3:'n' 4:'a' 5:' ' 6:'中' 9:'国'
 
 // byte
-s := "Japan 日本"
+s := "China 中国"
 for i := 0; i < len(s); i++ {
     fmt.Printf("%q ", s[i])
 }
-// Output: 'J' 'a' 'p' 'a' 'n' ' ' 'æ' '\u0097' '¥' 'æ' '\u009c' '¬'
+// Output: 'C' 'h' 'i' 'n' 'a' ' ' 'ä' '¸' '\u00ad' 'å' '\u009b' '½'
 ```
 
 *搜索*
 
 |  表达式 | 结果  | 注意 |
 |  ----  | ----  | ---- | 
-| strings.Contains("Japan", "abc") | false | 包含字符串abc? |
-| strings.ContainsAny("Japan", "abc") | true | 包含字节a或b或c? |
+| strings.Contains("China", "abc") | false | 包含字符串abc? |
+| strings.ContainsAny("China", "abc") | true | 包含字节a或b或c? |
 | strings.Count("Banana", "ana") | 1 | ana的非重叠计数 |
-| strings.HasPrefix("Japan", "Ja") | true | 前缀是Ja? |
-| strings.HasSuffix("Japan", "pan") | true | 后缀是pan? |
-| strings.Index("Japan", "abc") | -1 | 子串第一次出现的位置|
-| strings.IndexAny("Japan", "abc") | 1 | a或b或c第一次出现的位置 |
-| strings.LastIndex("Japan", "abc") | -1 | 子串最后一次出现的位置 |
-| strings.LastIndexAny("Japan", "abc") | 3 | a或b或c最后一次出现的位置 |
+| strings.HasPrefix("China", "Ch") | true | 前缀是Ch? |
+| strings.HasSuffix("China", "ina") | true | 后缀是ina? |
+| strings.Index("China", "abc") | -1 | 子串第一次出现的位置|
+| strings.IndexAny("China", "abc") | 4 | a或b或c第一次出现的位置 |
+| strings.LastIndex("China", "abc") | -1 | 子串最后一次出现的位置 |
+| strings.LastIndexAny("China", "abc") | 4 | a或b或c最后一次出现的位置 |
 
 *替换*
 
@@ -92,9 +92,9 @@ for i := 0; i < len(s); i++ {
 |  ----  | ----  | ---- | 
 | strings.Replace("foo", "o", ".", 2) | f.. | 将前2个o替换为. -1代表替换全部 |
 | strings.Map(func(r rune) rune {return r+1}, "ab") | bc | 处理每个字节 |
-| strings.ToUpper("Japan") | JAPAN | 大写 |
-| strings.ToLower("Japan") | japan	 | 小写 |
-| strings.Title("ja pan") | Ja Pan | 单词首字母大写 |
+| strings.ToUpper("China") | CHINA | 大写 |
+| strings.ToLower("China") | china	 | 小写 |
+| strings.Title("Ch ina") | Ch Ina | 单词首字母大写 |
 | strings.TrimSpace(" foo\n") | foo | 去除开头和结尾的空白 |
 | strings.Trim("foo", "fo") |  | 去除开头和结尾的f和o |
 | strings.TrimLeft("foo", "f") | oo | 仅开头 |
@@ -114,7 +114,7 @@ for i := 0; i < len(s); i++ {
 
 |  表达式 | 结果  | 注意 |
 |  ----  | ----  | ---- | 
-| strings.Join([]string{"a", "b"}, ":") | a:b | 拼接 |
+| strings.Join([]string{"a", "b"}, "_") | a_b | 拼接 |
 | strings.Repeat("da", 2) | dada | 重复 |
 
 *转换*
