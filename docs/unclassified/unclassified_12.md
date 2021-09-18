@@ -34,6 +34,13 @@ sudo usermod -aG sudo username
 npm install --unsafe-perm
 ```
 
+#### ssh秘钥登录无效问题
+
+``` shell
+chmod 600 authorized_keys
+chmod 700 ~/.ssh
+```
+
 #### SSH config配置文件
 
 ``` shell
