@@ -25,7 +25,8 @@ module.exports = {
           { text: '高性能MySQL实战', link: '/mysql/lagou/' },
         ]
       },
-      { text: 'Redis', link: '/redis/' }
+      { text: 'Redis', link: '/redis/' },
+      { text: '大数据', link: '/bigdata/' }
     ]
   }
 }
