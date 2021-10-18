@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>hive安装 | 笔记</title>
+    <meta name="generator" content="VuePress 1.7.1">
+    <link rel="icon" href="/favicon.png">
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/assets/css/0.styles.6d79335f.css" as="style"><link rel="preload" href="/assets/js/app.92a67e89.js" as="script"><link rel="preload" href="/assets/js/2.762c3895.js" as="script"><link rel="preload" href="/assets/js/3.116fffb6.js" as="script"><link rel="preload" href="/assets/js/11.9215b115.js" as="script"><link rel="prefetch" href="/assets/js/10.fcfd0926.js"><link rel="prefetch" href="/assets/js/12.84194099.js"><link rel="prefetch" href="/assets/js/13.ea829978.js"><link rel="prefetch" href="/assets/js/14.dcbe7dee.js"><link rel="prefetch" href="/assets/js/15.41f020b6.js"><link rel="prefetch" href="/assets/js/16.967be611.js"><link rel="prefetch" href="/assets/js/17.e519d5cd.js"><link rel="prefetch" href="/assets/js/18.520b77dd.js"><link rel="prefetch" href="/assets/js/19.1ff9671d.js"><link rel="prefetch" href="/assets/js/20.6322e88c.js"><link rel="prefetch" href="/assets/js/21.9bc74793.js"><link rel="prefetch" href="/assets/js/22.9bf6f8cf.js"><link rel="prefetch" href="/assets/js/23.4a61c160.js"><link rel="prefetch" href="/assets/js/24.08ef6863.js"><link rel="prefetch" href="/assets/js/25.fd3c25f5.js"><link rel="prefetch" href="/assets/js/26.0bdd470d.js"><link rel="prefetch" href="/assets/js/27.8bc0d3f5.js"><link rel="prefetch" href="/assets/js/28.552817b0.js"><link rel="prefetch" href="/assets/js/29.f69865b5.js"><link rel="prefetch" href="/assets/js/30.b7387650.js"><link rel="prefetch" href="/assets/js/31.b6affd07.js"><link rel="prefetch" href="/assets/js/32.cc75c9b5.js"><link rel="prefetch" href="/assets/js/33.fe2bc6ef.js"><link rel="prefetch" href="/assets/js/34.27e2dfbe.js"><link rel="prefetch" href="/assets/js/35.7440929a.js"><link rel="prefetch" href="/assets/js/36.4dbab664.js"><link rel="prefetch" href="/assets/js/37.3055b2bd.js"><link rel="prefetch" href="/assets/js/38.131b0a04.js"><link rel="prefetch" href="/assets/js/39.e2157ccd.js"><link rel="prefetch" href="/assets/js/4.8fba8a13.js"><link rel="prefetch" href="/assets/js/40.8f97c217.js"><link rel="prefetch" href="/assets/js/41.151335ec.js"><link rel="prefetch" href="/assets/js/42.1e060412.js"><link rel="prefetch" href="/assets/js/43.f5974a0f.js"><link rel="prefetch" href="/assets/js/44.d883de6e.js"><link rel="prefetch" href="/assets/js/45.a76363ab.js"><link rel="prefetch" href="/assets/js/46.f056fa05.js"><link rel="prefetch" href="/assets/js/47.ea859f6a.js"><link rel="prefetch" href="/assets/js/48.09c7d4cd.js"><link rel="prefetch" href="/assets/js/49.a53090c8.js"><link rel="prefetch" href="/assets/js/5.16e339f1.js"><link rel="prefetch" href="/assets/js/50.fb9e90aa.js"><link rel="prefetch" href="/assets/js/51.e64f6a9e.js"><link rel="prefetch" href="/assets/js/52.5ed8ce21.js"><link rel="prefetch" href="/assets/js/53.a2525f8c.js"><link rel="prefetch" href="/assets/js/6.ad56fd87.js"><link rel="prefetch" href="/assets/js/7.a0478efc.js"><link rel="prefetch" href="/assets/js/8.57f49743.js"><link rel="prefetch" href="/assets/js/9.51778935.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.6d79335f.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">笔记</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/unclassified/" class="nav-link">
+  未分类
+</a></div><div class="nav-item"><a href="/golang/" class="nav-link">
+  Golang
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="MySQL Menu" class="dropdown-title"><span class="title">MySQL</span> <span class="arrow down"></span></button> <button type="button" aria-label="MySQL Menu" class="mobile-dropdown-title"><span class="title">MySQL</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/mysql/" class="nav-link">
+  MySQL
+</a></li><li class="dropdown-item"><!----> <a href="/mysql/lagou/" class="nav-link">
+  高性能MySQL实战
+</a></li></ul></div></div><div class="nav-item"><a href="/redis/" class="nav-link">
+  Redis
+</a></div><div class="nav-item"><a href="/bigdata/" class="nav-link router-link-active">
+  大数据
+</a></div></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/unclassified/" class="nav-link">
+  未分类
+</a></div><div class="nav-item"><a href="/golang/" class="nav-link">
+  Golang
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="MySQL Menu" class="dropdown-title"><span class="title">MySQL</span> <span class="arrow down"></span></button> <button type="button" aria-label="MySQL Menu" class="mobile-dropdown-title"><span class="title">MySQL</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/mysql/" class="nav-link">
+  MySQL
+</a></li><li class="dropdown-item"><!----> <a href="/mysql/lagou/" class="nav-link">
+  高性能MySQL实战
+</a></li></ul></div></div><div class="nav-item"><a href="/redis/" class="nav-link">
+  Redis
+</a></div><div class="nav-item"><a href="/bigdata/" class="nav-link router-link-active">
+  大数据
+</a></div></nav>  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h3 id="hadoop"><a href="#hadoop" class="header-anchor">#</a> hadoop</h3> <ol><li>下载 hadoop3.3.1</li></ol> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">wget</span> https://mirrors.bfsu.edu.cn/apache/hadoop/common/hadoop-3.3.1/hadoop-3.3.1.tar.gz
+<span class="token function">tar</span> -xvf hadoop-3.3.1.tar.gz -C /data/hivespine/
+<span class="token builtin class-name">cd</span> /data/hivespine/hadoop-3.3.1
+</code></pre></div><ol start="2"><li><code>etc/hadoop/hadoop-env.sh</code> 文件中添加</li></ol> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token builtin class-name">export</span> <span class="token assign-left variable">JAVA_HOME</span><span class="token operator">=</span>/usr/lib/jvm/java-1.8.0
+</code></pre></div><ol start="3"><li><code>etc/hadoop/hdfs-site.xml</code> 文件中添加</li></ol> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token operator">&lt;</span>configuration<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span>-- 关闭鉴权 --<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>property<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>name<span class="token operator">&gt;</span>dfs.permissions.enabled<span class="token operator">&lt;</span>/name<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>value<span class="token operator">&gt;</span>false<span class="token operator">&lt;</span>/value<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>/property<span class="token operator">&gt;</span>
+	   <span class="token operator">&lt;</span>property<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>name<span class="token operator">&gt;</span>dfs.client.use.datanode.hostname<span class="token operator">&lt;</span>/name<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>value<span class="token operator">&gt;</span>true<span class="token operator">&lt;</span>/value<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>/property<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>/configuration<span class="token operator">&gt;</span>
+</code></pre></div><ol start="4"><li><code>etc/hadoop/core-site.xml</code>文件中添加</li></ol> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token operator">&lt;</span>configuration<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span>-- 指定hdfs的nameservice的地址为ip,端口为9000 --<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>property<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>name<span class="token operator">&gt;</span>fs.defaultFS<span class="token operator">&lt;</span>/name<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>value<span class="token operator">&gt;</span>hdfs://10.2.174.241:900<span class="token operator"><span class="token file-descriptor important">0</span>&lt;</span>/value<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>/property<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span>-- 指定hadoop存储数据的目录 --<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>property<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>name<span class="token operator">&gt;</span>hadoop.tmp.dir<span class="token operator">&lt;</span>/name<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>value<span class="token operator">&gt;</span>/data/hivespine/hadooptmp<span class="token operator">&lt;</span>/value<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>/property<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>property<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>name<span class="token operator">&gt;</span>fs.oss.buffer.dir<span class="token operator">&lt;</span>/name<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>value<span class="token operator">&gt;</span>/data/hivespine/hadoopbuffer<span class="token operator">&lt;</span>/value<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>/property<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>/configuration<span class="token operator">&gt;</span>
+</code></pre></div><ol start="5"><li>配置免密登录</li></ol> <div class="language-shell extra-class"><pre class="language-shell"><code>ssh-keygen
+
+ssh-copy-id localhost
+</code></pre></div><ol start="6"><li>启动 hdfs</li></ol> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment"># 初始化hdfs文件系统</span>
+./bin/hdfs namenode -format
+<span class="token comment"># 启动</span>
+./sbin/start-dfs.sh
+</code></pre></div><h3 id="hive"><a href="#hive" class="header-anchor">#</a> hive</h3> <ol><li>下载 hive3.1.2</li></ol> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">wget</span> https://mirrors.bfsu.edu.cn/apache/hive/hive-3.1.2/apache-hive-3.1.2-bin.tar.gz
+<span class="token function">tar</span> -xvf apache-hive-3.1.2-bin.tar.gz -C /data/hivespine/
+<span class="token function">mv</span> /data/hivespine/apache-hive-3.1.2-bin /data/hivespine/hive-3.1.2
+
+<span class="token builtin class-name">cd</span> /data/hivespine/hive-3.1.2
+<span class="token function">cp</span> conf/hive-env.sh.template conf/hive-env.sh
+<span class="token function">touch</span> conf/hive-site.xml
+</code></pre></div><ol start="2"><li><code>hive-env.sh</code> 文件中添加</li></ol> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token builtin class-name">export</span> <span class="token assign-left variable">HADOOP_HOME</span><span class="token operator">=</span>/data/hivespine/hadoop-3.3.1
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">HIVE_CONF_DIR</span><span class="token operator">=</span>/data/hivespine/hive-3.1.2/conf
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">HIVE_AUX_JARS_PATH</span><span class="token operator">=</span>/data/hivespine/hive-3.1.2/lib
+</code></pre></div><ol start="3"><li><code>hive-site.xml</code>文件中添加</li></ol> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token operator">&lt;</span>configuration<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>property<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>name<span class="token operator">&gt;</span>fs.defaultFS<span class="token operator">&lt;</span>/name<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>value<span class="token operator">&gt;</span>alluxio://10.2.174.241:1999<span class="token operator"><span class="token file-descriptor important">8</span>&lt;</span>/value<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>/property<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>property<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>name<span class="token operator">&gt;</span>javax.jdo.option.ConnectionUserName<span class="token operator">&lt;</span>/name<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>value<span class="token operator">&gt;</span>root<span class="token operator">&lt;</span>/value<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>/property<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>property<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>name<span class="token operator">&gt;</span>javax.jdo.option.ConnectionPassword<span class="token operator">&lt;</span>/name<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>value<span class="token operator">&gt;</span>root<span class="token operator">&lt;</span>/value<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>/property<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>property<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>name<span class="token operator">&gt;</span>javax.jdo.option.ConnectionURL<span class="token operator">&lt;</span>/name<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>value<span class="token operator">&gt;</span>jdbc:mysql://localhost:3306/hivespine?useUnicode<span class="token operator">=</span>true<span class="token operator">&amp;</span><span class="token assign-left variable">characterEncoding</span><span class="token operator">=</span>utf-8<span class="token operator">&amp;</span><span class="token assign-left variable">useSSL</span><span class="token operator">=</span>false<span class="token operator">&lt;</span>/value<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>/property<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>property<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>name<span class="token operator">&gt;</span>javax.jdo.option.ConnectionDriverName<span class="token operator">&lt;</span>/name<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>value<span class="token operator">&gt;</span>com.mysql.jdbc.Driver<span class="token operator">&lt;</span>/value<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>/property<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>property<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>name<span class="token operator">&gt;</span>hive.metastore.warehouse.dir<span class="token operator">&lt;</span>/name<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>value<span class="token operator">&gt;</span>/hivespine/warehouse<span class="token operator">&lt;</span>/value<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>/property<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>property<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span>-- https://community.hortonworks.com/content/supportkb/247055/errorjavalangunsupportedoperationexception-storage.html --<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>name<span class="token operator">&gt;</span>metastore.storage.schema.reader.impl<span class="token operator">&lt;</span>/name<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>value<span class="token operator">&gt;</span>org.apache.hadoop.hive.metastore.SerDeStorageSchemaReader<span class="token operator">&lt;</span>/value<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>/property<span class="token operator">&gt;</span>
+
+<span class="token operator">&lt;</span>/configuration<span class="token operator">&gt;</span>
+</code></pre></div><ol start="4"><li>兼容问题处理</li></ol> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment"># 安装mysql连接库</span>
+<span class="token function">wget</span> https://repo1.maven.org/maven2/mysql/mysql-connector-java/5.1.49/mysql-connector-java-5.1.49.jar
+<span class="token function">cp</span> mysql-connector-java-5.1.49.jar /data/hivespine/hive-3.1.2/lib/
+<span class="token comment"># 处理guava兼容问题</span>
+<span class="token function">cp</span> /data/hivespine/hadoop-3.3.1/share/hadoop/common/lib/guava-27.0-jre.jar /data/hivespine/hive-3.1.2/lib/
+<span class="token function">rm</span> /data/hivespine/hive-3.1.2/lib/guava-19.0.jar
+<span class="token comment"># 安装alluxio连接库</span>
+<span class="token function">cp</span> /data/alluxio-2.6.0/client/alluxio-2.6.0-client.jar /data/hivespine/hive-3.1.2/lib/
+</code></pre></div><ol start="5"><li>初始化元数据</li></ol> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment"># 在mysql中创建数据库hivespine</span>
+mysql<span class="token operator">&gt;</span> <span class="token keyword">create</span> <span class="token keyword">database</span> hivespine <span class="token keyword">default</span> <span class="token keyword">charset</span> utf8 <span class="token keyword">collate</span> utf8_general_ci<span class="token punctuation">;</span>
+</code></pre></div><div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment"># alluxio中创建工作目录</span>
+/data/alluxio-2.6.0/bin/alluxio fs <span class="token function">mkdir</span> /hivespine/warehouse
+</code></pre></div><ol start="6"><li>启动hive</li></ol> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment"># 初始化</span>
+./bin/schematool -initSchema -dbType mysql
+
+<span class="token comment"># 启动</span>
+./bin/hive
+
+<span class="token comment"># 只启动metastore供hetu连接</span>
+./bin/hive --service metastore -p <span class="token number">9083</span>
+</code></pre></div><h3 id="检查"><a href="#检查" class="header-anchor">#</a> 检查</h3> <p>查看<code>9000端口(hadoop)</code>和<code>9083端口(hive)</code>是否正常监听</p></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.92a67e89.js" defer></script><script src="/assets/js/2.762c3895.js" defer></script><script src="/assets/js/3.116fffb6.js" defer></script><script src="/assets/js/11.9215b115.js" defer></script>
+  </body>
+</html>

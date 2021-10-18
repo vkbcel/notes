@@ -1,3 +1,7 @@
+---
+title: alluxio安装
+---
+
 1. 下载
 ``` shell
 wget https://downloads.alluxio.io/downloads/files/2.6.0/alluxio-2.6.0-bin.tar.gz
@@ -60,6 +64,6 @@ fs.oss.endpoint=<aliyun endpoint>
 ```
 
 官方文档：
-配置要求：https://docs.alluxio.io/os/user/stable/en/deploy/Requirements.html
-单机安装：https://docs.alluxio.io/os/user/stable/en/deploy/Running-Alluxio-Locally.html
-底层文件系统使用OSS：https://docs.alluxio.io/os/user/stable/cn/ufs/OSS.html
+- 配置要求：https://docs.alluxio.io/os/user/stable/en/deploy/Requirements.html
+- 单机安装：https://docs.alluxio.io/os/user/stable/en/deploy/Running-Alluxio-Locally.html
+- 底层文件系统使用OSS：https://docs.alluxio.io/os/user/stable/cn/ufs/OSS.html
