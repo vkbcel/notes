@@ -1,3 +1,7 @@
+---
+title: flink安装
+---
+
 ### 安装flink
 1. 下载
 ``` shell

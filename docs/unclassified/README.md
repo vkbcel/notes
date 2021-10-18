@@ -2,7 +2,7 @@
 title: 说明
 ---
 
-**内容非原创 整理自互联网**
+**整理自互联网**
 
 [资源](/unclassified/unclassified_01.md)
 
