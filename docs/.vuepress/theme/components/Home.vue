@@ -27,11 +27,8 @@
 
     <Content class="theme-default-content custom" />
 
-    <div
-      v-if="data.footer"
-      class="footer"
-    >
-      {{ data.footer }}
+    <div class="footer">
+      <a href="https://beian.miit.gov.cn/">ICP证：京ICP备19056776号-1</a>
     </div>
   </main>
 </template>
