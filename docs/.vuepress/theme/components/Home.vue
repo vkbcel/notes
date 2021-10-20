@@ -28,7 +28,7 @@
     <Content class="theme-default-content custom" />
 
     <div class="footer">
-      <a href="https://beian.miit.gov.cn/">ICP证：京ICP备19056776号-1</a>
+      <a href="https://beian.miit.gov.cn/">京ICP备19056776号-1</a>
     </div>
   </main>
 </template>
