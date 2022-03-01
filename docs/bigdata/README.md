@@ -9,3 +9,5 @@ title: 说明
 [hive安装](/bigdata/bigdata_02.md)
 
 [flink安装](/bigdata/bigdata_03.md)
+
+[trino指派机制](/bigdata/bigdata_04.md)
