@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>trino指派机制 | 笔记</title>
+    <meta name="generator" content="VuePress 1.6.0">
+    <link rel="icon" href="/favicon.png">
+    <meta name="description" content="">
+    <link rel="preload" href="/assets/css/0.styles.a382d90e.css" as="style"><link rel="preload" href="/assets/js/app.fda78346.js" as="script"><link rel="preload" href="/assets/js/2.33d6764a.js" as="script"><link rel="preload" href="/assets/js/3.a685f0d1.js" as="script"><link rel="preload" href="/assets/js/13.12b84e6e.js" as="script"><link rel="prefetch" href="/assets/js/10.d7e7ee23.js"><link rel="prefetch" href="/assets/js/11.2733493e.js"><link rel="prefetch" href="/assets/js/12.8204ee0c.js"><link rel="prefetch" href="/assets/js/14.da73b244.js"><link rel="prefetch" href="/assets/js/15.f2be6a40.js"><link rel="prefetch" href="/assets/js/16.ef82577b.js"><link rel="prefetch" href="/assets/js/17.b6a791dd.js"><link rel="prefetch" href="/assets/js/18.fc21edb4.js"><link rel="prefetch" href="/assets/js/19.8af3ed72.js"><link rel="prefetch" href="/assets/js/20.315171a5.js"><link rel="prefetch" href="/assets/js/21.1242fb2c.js"><link rel="prefetch" href="/assets/js/22.46386050.js"><link rel="prefetch" href="/assets/js/23.aa7271ed.js"><link rel="prefetch" href="/assets/js/24.2e03a320.js"><link rel="prefetch" href="/assets/js/25.c37cb094.js"><link rel="prefetch" href="/assets/js/26.b078d366.js"><link rel="prefetch" href="/assets/js/27.500bd466.js"><link rel="prefetch" href="/assets/js/28.3dacc91b.js"><link rel="prefetch" href="/assets/js/29.e1dc85b7.js"><link rel="prefetch" href="/assets/js/30.6868e4ac.js"><link rel="prefetch" href="/assets/js/31.489d6e14.js"><link rel="prefetch" href="/assets/js/32.77639d30.js"><link rel="prefetch" href="/assets/js/33.02e504b6.js"><link rel="prefetch" href="/assets/js/34.5147eb0f.js"><link rel="prefetch" href="/assets/js/35.9af241a3.js"><link rel="prefetch" href="/assets/js/36.67500fde.js"><link rel="prefetch" href="/assets/js/37.ca65d539.js"><link rel="prefetch" href="/assets/js/38.14bc0e9c.js"><link rel="prefetch" href="/assets/js/39.de833c66.js"><link rel="prefetch" href="/assets/js/4.f019cb80.js"><link rel="prefetch" href="/assets/js/40.cdc897c5.js"><link rel="prefetch" href="/assets/js/41.573fabd7.js"><link rel="prefetch" href="/assets/js/42.96de735b.js"><link rel="prefetch" href="/assets/js/43.2d560b7e.js"><link rel="prefetch" href="/assets/js/44.3ea3055d.js"><link rel="prefetch" href="/assets/js/45.c4739764.js"><link rel="prefetch" href="/assets/js/46.8e40caa1.js"><link rel="prefetch" href="/assets/js/47.4584b968.js"><link rel="prefetch" href="/assets/js/48.a993a956.js"><link rel="prefetch" href="/assets/js/49.1492a4dd.js"><link rel="prefetch" href="/assets/js/5.b5f19cdc.js"><link rel="prefetch" href="/assets/js/50.98b5c13d.js"><link rel="prefetch" href="/assets/js/51.cefe2ab4.js"><link rel="prefetch" href="/assets/js/52.fb05e3a2.js"><link rel="prefetch" href="/assets/js/53.8a9f4571.js"><link rel="prefetch" href="/assets/js/54.db5445fb.js"><link rel="prefetch" href="/assets/js/55.e6cc0203.js"><link rel="prefetch" href="/assets/js/6.b91d4a05.js"><link rel="prefetch" href="/assets/js/7.b8dc2dff.js"><link rel="prefetch" href="/assets/js/8.e9116f7e.js"><link rel="prefetch" href="/assets/js/9.0db4627c.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.a382d90e.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">笔记</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/unclassified/" class="nav-link">
+  未分类
+</a></div><div class="nav-item"><a href="/golang/" class="nav-link">
+  Golang
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="MySQL Menu" class="dropdown-title"><span class="title">MySQL</span> <span class="arrow down"></span></button> <button type="button" aria-label="MySQL Menu" class="mobile-dropdown-title"><span class="title">MySQL</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/mysql/" class="nav-link">
+  MySQL
+</a></li><li class="dropdown-item"><!----> <a href="/mysql/lagou/" class="nav-link">
+  高性能MySQL实战
+</a></li></ul></div></div><div class="nav-item"><a href="/redis/" class="nav-link">
+  Redis
+</a></div><div class="nav-item"><a href="/bigdata/" class="nav-link router-link-active">
+  大数据
+</a></div></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/unclassified/" class="nav-link">
+  未分类
+</a></div><div class="nav-item"><a href="/golang/" class="nav-link">
+  Golang
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="MySQL Menu" class="dropdown-title"><span class="title">MySQL</span> <span class="arrow down"></span></button> <button type="button" aria-label="MySQL Menu" class="mobile-dropdown-title"><span class="title">MySQL</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/mysql/" class="nav-link">
+  MySQL
+</a></li><li class="dropdown-item"><!----> <a href="/mysql/lagou/" class="nav-link">
+  高性能MySQL实战
+</a></li></ul></div></div><div class="nav-item"><a href="/redis/" class="nav-link">
+  Redis
+</a></div><div class="nav-item"><a href="/bigdata/" class="nav-link router-link-active">
+  大数据
+</a></div></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>bigdata</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/bigdata/" aria-current="page" class="sidebar-link">说明</a></li><li><a href="/bigdata/bigdata_01.html" class="sidebar-link">alluxio安装</a></li><li><a href="/bigdata/bigdata_02.html" class="sidebar-link">hive安装</a></li><li><a href="/bigdata/bigdata_03.html" class="sidebar-link">flink安装</a></li><li><a href="/bigdata/bigdata_04.html" aria-current="page" class="active sidebar-link">trino指派机制</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><p><a href="https://www.infoq.cn/article/VNe0A9yKszPCmp32akCa" target="_blank" rel="noopener noreferrer">《Presto 源码分析：Coordinator 篇》<svg xmlns="http://www.w3.org/2000/svg" aria-labelledby="outbound-link-title" role="img" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><title id="outbound-link-title">(opens new window)</title> <path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <p><a href="http://wp.wjcodes.com/archives/180" target="_blank" rel="noopener noreferrer">《Presto技术内幕》(5)<svg xmlns="http://www.w3.org/2000/svg" aria-labelledby="outbound-link-title" role="img" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><title id="outbound-link-title">(opens new window)</title> <path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <p><a href="https://zhuanlan.zhihu.com/p/58959725" target="_blank" rel="noopener noreferrer">《# Presto 是如何 schedule task 的?》<svg xmlns="http://www.w3.org/2000/svg" aria-labelledby="outbound-link-title" role="img" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><title id="outbound-link-title">(opens new window)</title> <path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <p><img src="/bigdata/04_first.png" alt=""></p> <p>task大体可以分为四种</p> <ul><li>Coordinator_Only Task:
+遇到DDL或DML语句时，直接在Coordinator上对元数据进行修改，直接在Coordinator上运行一个Task而不再随机选择节点。</li> <li>Single Task:
+一般是将上游Stage的数据汇聚到一个Worker上汇总运算，如全局排序。随机选择一个节点</li> <li>Fixed Task:
+一般用于JOIN之类的聚合操作。随机选择hash_partition_count(可配置)个节点。</li></ul> <p>以上三种task节点选择在<code>SystemPartitioningHandle.java</code>中实现
+<img src="/bigdata/04_second.png" alt=""></p> <ul><li>Source Task:
+对于Source Task，会在DistributedExecutionPlanner中从连接器的<code>ConnectorSplitManager</code>.<code>getSplits</code>方法拿到分片。例如：对tpch连接器进行查询，拿到的分片数量为节点数量*6(可配置)。对mysql连接器进行查询，拿到的分片数量为1，无法并行获取数据。</li></ul> <p>tpch连接器的<code>getSplits</code>方法如：
+<img src="/bigdata/04_third.png" alt="">
+拿到分片详情后对于每个分片调用<code>nodeSelector</code>.<code>computeAssignments</code>指派一个节点，规则：对于支持远程获取的连接器随机选取10(可配置)个节点，从中选择负载最小的节点进行指派。</p> <p>支持远程获取：外部连接器如：mysql, hive等
+不支持远程获取：内部特殊用途连接器：memory, tpch, jmx等</p> <p>综上，所有对于节点的选择都实现在nodeSelector中，从所有活跃节点中随机选择，具体实现有两个<code>SimpleNodeSelector</code>和<code>TopologyAwareNodeSelector</code>。后者提供就近选择的能力。</p> <p>对<code>createNodeSelector</code>方法进行改造，实现根据请求session控制可选择节点范围。</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">3/1/2022, 6:29:02 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/bigdata/bigdata_03.html" class="prev">
+        flink安装
+      </a></span> <!----></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.fda78346.js" defer></script><script src="/assets/js/2.33d6764a.js" defer></script><script src="/assets/js/3.a685f0d1.js" defer></script><script src="/assets/js/13.12b84e6e.js" defer></script>
+  </body>
+</html>
