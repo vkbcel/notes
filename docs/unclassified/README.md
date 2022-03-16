@@ -12,6 +12,11 @@ title: 说明
 
 [win10安装linux子系统(WSL)](/unclassified/unclassified_13.md)
 
+极客 <手把手带你搭建秒杀系统>
+
+[物理机极致优化](/unclassified/unclassified_14.md)
+
 [docker使用问题汇总](/unclassified/unclassified_21.md)
 
 [互斥锁、自旋锁、读写锁、悲观锁、乐观锁](/unclassified/unclassified_95.md)
+
