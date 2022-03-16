@@ -4,7 +4,7 @@ title: 说明
 
 **整理自互联网**
 
-[问题汇总](/golang/golang_01.md)
+[备忘](/golang/golang_01.md)
 
 [代码片段](/golang/golang_02.md)
 

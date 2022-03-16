@@ -4,7 +4,7 @@ title: 说明
 
 **整理自互联网**
 
-[Redis问题汇总](/redis/redis_01.md)
+[备忘](/redis/redis_01.md)
 
 **Redis命令参考**
 

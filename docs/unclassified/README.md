@@ -8,7 +8,7 @@ title: 说明
 
 [linux常用命令](/unclassified/unclassified_11.md)
 
-[linux使用问题汇总](/unclassified/unclassified_12.md)
+[linux备忘](/unclassified/unclassified_12.md)
 
 [win10安装linux子系统(WSL)](/unclassified/unclassified_13.md)
 
