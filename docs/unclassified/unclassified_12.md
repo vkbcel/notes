@@ -1,5 +1,5 @@
 ---
-title: linux使用问题汇总
+title: linux备忘
 ---
 
 

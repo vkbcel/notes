@@ -1,5 +1,5 @@
 ---
-title: golang问题汇总
+title: 备忘
 ---
 
 #### 代理

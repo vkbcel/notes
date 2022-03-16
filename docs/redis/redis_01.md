@@ -1,5 +1,5 @@
 ---
-title: redis问题汇总
+title: 备忘
 ---
 
 文档链接
